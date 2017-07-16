@@ -960,6 +960,7 @@
 							return num2 == num;
 						}
 					}
+			if(chat.indexOf("[AFK]" !== -1)
                     bBot.userUtilities.setLastActivity(bBot.room.users[i]);
                     if (bBot.room.users[i].username !== chat.un) {
                         bBot.room.users[i].username = chat.un;
