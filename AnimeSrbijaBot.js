@@ -1100,6 +1100,7 @@
             if (bBot.chatUtilities.chatFilter(chat)) return void (0);
             if (!bBot.chatUtilities.commandCheck(chat))
                 bBot.chatUtilities.action(chat);
+
         },
         eventUserjoin: function (user) {
             var known = false;
@@ -1491,7 +1492,11 @@
                     API.moderateDeleteChat(chat.cid);
                     return true;
                 }
-
+		if(msg.indexOf("TOKEna") !== -1){                
+                  setTimeout(function (id) {
+                  API.moderateDeleteChat(id);
+                }, 60 * 1000, chat.cid);
+            }
                 var rlJoinChat = bBot.chat.roulettejoin;
                 var rlLeaveChat = bBot.chat.rouletteleave;
 
@@ -4148,8 +4153,8 @@
         },
 		
 		// !resettokens
-        resettokensCommand: { 
-            command: 'resettokens',  //The command to be called. With the standard command literal this would be: !cleartokens
+        resettokensCommand: {
+            command: 'resettokens15',  //The command to be called. With the standard command literal this would be: !cleartokens
             rank: 'manager', //Minimum user permission to use the command
             type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
             functionality: function (chat, cmd) {
@@ -4157,8 +4162,8 @@
                 if (!bBot.commands.executable(this.rank, chat)) return void (0);
                 else {
                     localStorage.clear();
-                    localStorage.setItem("Warix3", "500");
-                    API.sendChat("/me Tokeni za sve korisnike su resetovani.");
+                    localStorage.setItem(user, "15");
+                    API.sendChat("/me Tokeni su resetovani na 15.");
                 }
             }
         },
