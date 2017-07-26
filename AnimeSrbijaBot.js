@@ -379,7 +379,7 @@
             
             //Check for existing user tokens
             if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
-                 localStorage.setItem(user, "5");
+                 localStorage.setItem(user, "15");
                  tokens = localStorage.getItem(user);
             }
             else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined") {
@@ -4162,7 +4162,7 @@
                 if (!bBot.commands.executable(this.rank, chat)) return void (0);
                 else {
                     localStorage.clear();
-                    localStorage.setItem(user, "15");
+                    //localStorage.setItem(user, "15");
                     API.sendChat("/me Tokeni su resetovani na 15.");
                 }
             }
