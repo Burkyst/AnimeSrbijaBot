@@ -3173,7 +3173,7 @@
                     if (!bBot.commands.executable(this.rank, chat)) return void (0);
                     else {
                         if (typeof bBot.settings.opLink === "string")
-                            return API.sendChat(subChat(bBot.chat.oplist, {link: bBot.settings.opLink}));
+                            return API.sendChat(subChat(bBot.chat.oplist, {name: chat.un}, {link: bBot.settings.opLink}));
                     }
                 }
             },
