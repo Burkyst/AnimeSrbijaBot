@@ -506,7 +506,7 @@
             songstats: false,
             commandLiteral: "!",
             blacklists: {
-                 OP: "nije jos gotovo"
+                 OP: "http://www.kawaibot.tk/blacklista/op.json"
             },
 			mehAutoBan: true,
 			mehAutoBanLimit: 5,
