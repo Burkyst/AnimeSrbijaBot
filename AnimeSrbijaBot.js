@@ -495,7 +495,7 @@
             filterChat: true,
             etaRestriction: false,
             welcome: true,
-            opLink: "nije jos gotovo",
+            opLink: "http://www.kawaibot.tk/blacklista/op.json",
             rulesLink: "http://pastebin.com/FpyDtcJE",
             themeLink: null,
             fbLink: "https://www.facebook.com/AnimeSrbija2013/",
