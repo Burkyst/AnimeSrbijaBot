@@ -4163,7 +4163,7 @@
                 else {
                     localStorage.clear();
                     //localStorage.setItem(user, "15");
-                    API.sendChat("/me Tokeni su resetovani na 15.");
+                    API.sendChat("/me Tokeni su resetovani na 5.");
                 }
             }
         },
