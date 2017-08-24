@@ -379,7 +379,7 @@
             
             //Check for existing user tokens
             if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
-                 localStorage.setItem(user, "15");
+                 localStorage.setItem(user, "5");
                  tokens = localStorage.getItem(user);
             }
             else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined") {
@@ -4154,7 +4154,7 @@
 		
 		// !resettokens
         resettokensCommand: {
-            command: 'resettokens15',  //The command to be called. With the standard command literal this would be: !cleartokens
+            command: 'resettokens',  //The command to be called. With the standard command literal this would be: !cleartokens
             rank: 'manager', //Minimum user permission to use the command
             type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
             functionality: function (chat, cmd) {
