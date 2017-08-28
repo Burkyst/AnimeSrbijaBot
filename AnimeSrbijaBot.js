@@ -1136,8 +1136,8 @@
                 bBot.chatUtilities.action(chat);
 
 		/*
-		propMessage
-		*/
+				propMessage
+			*/
 			
 			if (chat.message.match(/.*[.](\S*).*/)) {
 				var regexObj;
@@ -1153,14 +1153,14 @@
 				}
 			}
 			
-			// Quiz start
+			//holy3
 			if (quizState && quizBand != "" && quizYear != "" && quizCountry != "" && chat.uid != bBot.room.currentDJID) {
 			
 				var year = new RegExp(quizYear, 'g');
 				var country = new RegExp(quizCountry, 'g');
 				
 				if (chat.message.match(year) && quizCycle == 1) {
-					API.sendChat("/me @" + chat.un + " Tacno, +1 bod! Iz koje zemlje " + quizBand + " dolaze/i?");
+					API.sendChat("/me @" + chat.un + " Tacno, +1 bod! Iz koje zemlje " + quizBand + " dolazi/e?");
 					quizLastScore += 1;
 					quizCycle += 1;
 					quizLastUID = chat.uid;				
@@ -1172,15 +1172,15 @@
 					quizCycle += 1;
 					var n1 = Math.floor(Math.random() * 6) + 1;
 					var n2 = Math.floor(Math.random() * 6) + 1;
-					var msg = "@" + chat.un + "/me Okrenuo si :game_die: " + n1 + " i:game_die: " + n2;
+					var msg = "@" + chat.un + "/me Okrenuo si :game_die: " + n1 + " i :game_die: " + n2;
 					switch (n1 + n2) {
 						case 3:
 							quizLastScore += 10;
-							msg += ", i pogodio svetu 3-icu: +12 bodova! Ka-Ching :moneybag:.";
+							msg += ", I pogodio SVETu 3-icu: +12 bodova! Ka-Ching :moneybag:.";
 							break;
 						case 6:
 							quizLastScore *= 2;
-							msg = msg + ", i duplirao tvoje bodove: +" + quizLastScore + ".";
+							msg = msg + ", I udvostručio bodove: +" + quizLastScore + ".";
 							break;
 						case 9:
 							quizLastScore *= 3;
@@ -1191,14 +1191,14 @@
 							msg = msg + ", I učetverostručio vaše bodove: +" + quizLastScore + ".";
 							break;
 						default:
-							msg = msg + ", nije pogodio ni jedan čarobni broj i postigao ukupno " + quizLastScore + " bodova."
+							msg = msg + ", Nije pogodio ni jedan čarobni broj i postigao ukupno " + quizLastScore + " bodova."
 							break;
 					}
 					API.sendChat(msg);
 					
 				}
 			}
-			// END
+		//END
         },
         eventUserjoin: function (user) {
             var known = false;
@@ -1478,7 +1478,7 @@
             }
             storeToStorage();
 		
-		// Quiz - request info and ask active question
+		///holy3 - request info and ask active question
 			if (quizState) {
 				
 				//Add personal score and check if he/she wins
@@ -1487,21 +1487,21 @@
 						for (var i = 0; i < quizUsers.length; i++) {
 							if (quizUsers[i][0] == quizLastUID) {
 								quizUsers[i][2] += quizLastScore;
-								if(quizUsers[i][2] >= parseInt(quizMaxbodova,10)) {
-									API.sendChat("@" + quizUsers[i][1] + " Pobjedio si! Cestitam, bit ces zapamcen vjekovima. Nije li to najbolja nagrada sto mozes osvojit? ^^");
+								if(quizUsers[i][2] >= parseInt(quizMaxpoints,10)) {
+									API.sendChat("@" + quizUsers[i][1] + " Pobjedio si! Cestitam, Bit ces zapamcen vjekovima. Nije li to najbolja cijena koju možete osvojiti? ^^");
 									quizState = false;
 								} else {
-									API.sendChat("@" + quizUsers[i][1] + " Bodova: " + quizLastScore + " / Total Score: " + quizUsers[i][2] + " / Bodova preostalo: " + (parseInt(quizMaxbodova,10) - parseInt(quizUsers[i][2],10)).toString());
+									API.sendChat("@" + quizUsers[i][1] + " Bodova: " + quizLastScore + " / Ukupni rezultat: " + quizUsers[i][2] + " / Poena preostalo: " + (parseInt(quizMaxpoints,10) - parseInt(quizUsers[i][2],10)).toString());
 								}
 								break;
 							} else if (i == quizUsers.length - 1) {
 								quizUsers.push([quizLastUID,bBot.userUtilities.lookupUser(quizLastUID).username,quizLastScore]);
-								API.sendChat("@" + quizUsers[i][1] + " Bodova: " + quizLastScore + " / Ukupni rezultat: " + quizUsers[i][2] + " / Bodova preostalo: " + (parseInt(quizMaxbodova,10) - parseInt(quizUsers[i][2],10)).toString());
+								API.sendChat("@" + quizUsers[i][1] + " Bodova: " + quizLastScore + " / Ukupni rezultat: " + quizUsers[i][2] + " / Poena preostalo: " + (parseInt(quizMaxpoints,10) - parseInt(quizUsers[i][2],10)).toString());
 							}
 						}
 					} else {
 						quizUsers.push([quizLastUID,bBot.userUtilities.lookupUser(quizLastUID).username,quizLastScore]);
-						API.sendChat("@" + quizUsers[0][1] + " Bodova: " + quizLastScore + " / Ukupni rezlutat: " + quizUsers[0][2] + " / Bodova preostalo: " + (parseInt(quizMaxbodova,10) - parseInt(quizUsers[0][2],10)).toString());
+						API.sendChat("@" + quizUsers[0][1] + " Bodova: " + quizLastScore + " / Ukupni rezultat: " + quizUsers[0][2] + " / Bodova preostalo: " + (parseInt(quizMaxpoints,10) - parseInt(quizUsers[0][2],10)).toString());
 					}	
 				}
 				
@@ -1546,7 +1546,7 @@
 										}
 									} catch (e) {
 										API.sendChat("Žao nam je, čini se da musicbrainz ne prepoznaje ovaj bend ili umjetnika. Nastavit ćemo za vrijeme sljedeće pjesme.");
-										console.log("Zemlja ili godina nisu pronadjeni.");
+										console.log("country or year not known");
 									}			
 								}
 						}
