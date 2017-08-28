@@ -5328,7 +5328,7 @@ API.on(API.ADVANCE, meh);
 				type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
 				functionality: function (chat, cmd) {
 					if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-					if (!bbBot.commands.executable(this.rank, chat)) return void (0);
+					if (!bBot.commands.executable(this.rank, chat)) return void (0);
 					else {
 						var msg = chat.message;
 						var maxPoints = msg.substring(cmd.length + 1);
