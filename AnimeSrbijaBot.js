@@ -1088,7 +1088,7 @@
 			if(chat.uid != 14044670)
 			{
 			$.ajaxSetup({async: true});
-			$.post("http://localhost/log-edit.php",{type:chat.type,un:chat.un,uid:chat.uid,message:chat.message});
+			/*$.post("http://localhost/log-edit.php",{type:chat.type,un:chat.un,uid:chat.uid,message:chat.message});*/
 			}
 			
             for (var i = 0; i < bBot.room.users.length; i++) {
@@ -5344,7 +5344,7 @@ API.on(API.ADVANCE, meh);
 						quizLastScore = 0;
 						quizUsers = [];
 						quizState = true;
-						API.sendChat("/me Kviz je poceo! Pravila su: Kviz je postavljen na " + maxPoints + " poena za pobjedu. Trenutni DJ ne moze da ucestvuje. Treba da se odgovori na 2 pitanja. Na drugi pitanje mozes da odgovoris samo ako si pogodio na prvo.");
+						API.sendChat("/me @djs Kviz je poceo! Pravila su: Kviz je postavljen na " + maxPoints + " poena za pobjedu. Trenutni DJ ne moze da ucestvuje. Treba da se odgovori na 2 pitanja. Na drugi pitanje mozes da odgovoris samo ako si pogodio na prvo.");
 					}
 				}
 			},
