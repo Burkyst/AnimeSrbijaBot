@@ -72,7 +72,7 @@
 	
 	//GLOBAL variables quiz
 	var quizMaxpoints = 20;
-	var quizState = false;
+	var quizState = true;
 	var quizBand = "";
 	var quizYear = "";
 	var quizCountry = "";
@@ -1160,7 +1160,7 @@
 				var country = new RegExp(quizCountry, 'g');
 				
 				if (chat.message.match(year) && quizCycle == 1) {
-					API.sendChat("/me @" + chat.un + " Tacno, +1 bod! Iz koje zemlje " + quizBand + " dolazi/e?");
+					API.sendChat("/me @" + chat.un + " Tacno, +1 bod! Odakle " + quizBand + " dolazi?");
 					quizLastScore += 1;
 					quizCycle += 1;
 					quizLastUID = chat.uid;				
