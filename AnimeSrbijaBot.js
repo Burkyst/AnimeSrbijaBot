@@ -1,22 +1,22 @@
 /*
     AnimeSrbijaBot BOT SCRIPT
 
-	Custom bot for a Plug.dj community, based on dave1.0 script
+    Custom bot for a Plug.dj community, based on dave1.0 script
 	
-	This script is modified by Warix3 (Toni Pejić) kawaibot.ga
-	And AnimeSrbija commands are added by Warix3.
+    This script is modified by Warix3 (Toni Pejić) kawaibot.ga
+    And AnimeSrbija commands are added by Warix3.
 	
-	Copyright (c) 2016 Warix3
+    Copyright (c) 2016 Warix3
     Please do not copy or modify without permission
     from the respected owner(s) and developer(s).
 	
-	Author: Toni Pejić (Warix3)
-	Github: Warix3
-	Website: kawaibot.ga
-	E-mail: toni.pejic98@gmail.com
+    Author: Toni Pejić (Warix3)
+    Github: Warix3
+    Website: kawaibot.ga
+    E-mail: toni.pejic98@gmail.com
 */
 
-//BasicBot copyright notice:
+   //BasicBot copyright notice:
 
 /**
  *Copyright 2015 basicBot
@@ -24,7 +24,7 @@
  *This software is not for profit, any extension, or unauthorised person providing this software is not authorised to be in a position of any monetary gain from this use of this software. Any and all money gained under the use of the software (which includes donations) must be passed on to the original author.
  */
 
-//Dave1.0 Copyright notice:
+   //Dave1.0 Copyright notice:
 
 /*
     DAVE1.0 BOT SCRIPT
@@ -59,6 +59,40 @@
 */
 
 (function () {
+	
+	// Sad Nebitno
+     var propMessage;
+     var updateProps = function () {
+		$.get('https://rawgit.com/ajdin1997/Dave1.0/master/props.md', function (response) {
+			propMessage = JSON.parse(response);
+		});
+	};
+	
+	updateProps();
+	
+	//GLOBAL variables quiz
+	var quizMaxpoints = 300;
+	var quizState = false;
+	var quizBand = "";
+	var quizYear = "";
+	var quizCountry = "";
+	var quizCycle = 1;
+	var quizLastUID = null;
+	var quizLastScore = 0;
+	var quizUsers = [];
+	
+	var rssFeeds = [
+			["baseball","http://sports.espn.go.com/espn/rss/mlb/news",16,0],
+			["progrock","http://progressiverockcentral.com/en/feed/",10,0],
+			["rock","http://www.rollingstone.com/music.rss",25,0],
+			["metal","http://www.metalstorm.net/rss/news.xml",15,0],
+			["jokes","http://www.jokesareawesome.com/rss/latest/25/",25,0],
+			["oneliners","http://www.jokespalace.com/category/one-liners/feed/",10,0],
+			["chicagobears","http://feeds.feedburner.com/chicagobears/news?format=xml",15,0],
+			["football","http://sports.espn.go.com/espn/rss/nfl/news",16,0],
+			["facts","http://uber-facts.com/feed/",10,0],
+			["isles","https://sports.yahoo.com/nhl/teams/nyi/rss.xml",34,0]
+		];
 
     /*window.onerror = function() {
         var room = JSON.parse(localStorage.getItem("bBotRoom"));
@@ -432,7 +466,7 @@
     var botCreatorIDs = ["4329684"];
 
     var bBot = {
-        version: "v3.1.2",
+        version: "v4.1.2",
         status: false,
         name: "KawaiBOT",
         loggedInID: "23625731",
@@ -1101,6 +1135,70 @@
             if (!bBot.chatUtilities.commandCheck(chat))
                 bBot.chatUtilities.action(chat);
 
+		/*
+		propMessage
+		*/
+			
+			if (chat.message.match(/.*[.](\S*).*/)) {
+				var regexObj;
+				for (var i = 0; i < propMessage.length; ++i){
+					regexObj = new RegExp(".*[.]" + propMessage[i][0] + ".*");
+					if (chat.message.match(regexObj)) {
+						if(chat.message.match(/@/)) {			
+							API.sendChat("/me " + propMessage[i][1].replace("@","@" + chat.message.replace(/.*[@](\S*).*/, "$1")));
+						} else {
+							API.sendChat("/me " + propMessage[i][1].replace("@","@"+API.getDJ().username));
+						}
+					}
+				}
+			}
+			
+			// Quiz start
+			if (quizState && quizBand != "" && quizYear != "" && quizCountry != "" && chat.uid != bBot.room.currentDJID) {
+			
+				var year = new RegExp(quizYear, 'g');
+				var country = new RegExp(quizCountry, 'g');
+				
+				if (chat.message.match(year) && quizCycle == 1) {
+					API.sendChat("/me @" + chat.un + " Tacno, +1 bod! Iz koje zemlje " + quizBand + " dolaze/i?");
+					quizLastScore += 1;
+					quizCycle += 1;
+					quizLastUID = chat.uid;				
+				} else if (chat.message.match(country) && chat.uid == quizLastUID && quizCycle == 2) {
+					API.sendChat("/me @" + chat.un + " Tacno, +1 bod! Bacite kockice kada ste spremni upisivanjem 3 u chat.");
+					quizLastScore += 1;
+					quizCycle += 1;
+				} else if (chat.message == "3" && chat.uid == quizLastUID && quizCycle == 3) {
+					quizCycle += 1;
+					var n1 = Math.floor(Math.random() * 6) + 1;
+					var n2 = Math.floor(Math.random() * 6) + 1;
+					var msg = "@" + chat.un + "/me Okrenuo si :game_die: " + n1 + " i:game_die: " + n2;
+					switch (n1 + n2) {
+						case 3:
+							quizLastScore += 10;
+							msg += ", i pogodio svetu 3-icu: +12 bodova! Ka-Ching :moneybag:.";
+							break;
+						case 6:
+							quizLastScore *= 2;
+							msg = msg + ", i duplirao tvoje bodove: +" + quizLastScore + ".";
+							break;
+						case 9:
+							quizLastScore *= 3;
+							msg = msg + ", I utrostručio vaše bodove: +" + quizLastScore + ".";
+							break;
+						case 12:
+							quizLastScore *= 4;
+							msg = msg + ", I učetverostručio vaše bodove: +" + quizLastScore + ".";
+							break;
+						default:
+							msg = msg + ", nije pogodio ni jedan čarobni broj i postigao ukupno " + quizLastScore + " bodova."
+							break;
+					}
+					API.sendChat(msg);
+					
+				}
+			}
+			// END
         },
         eventUserjoin: function (user) {
             var known = false;
@@ -1379,6 +1477,84 @@
                 }, remaining + 5000);
             }
             storeToStorage();
+		
+		// Quiz - request info and ask active question
+			if (quizState) {
+				
+				//Add personal score and check if he/she wins
+				if (quizBand != "" && quizLastScore != 0) {
+					if (quizUsers.length > 0) {
+						for (var i = 0; i < quizUsers.length; i++) {
+							if (quizUsers[i][0] == quizLastUID) {
+								quizUsers[i][2] += quizLastScore;
+								if(quizUsers[i][2] >= parseInt(quizMaxbodova,10)) {
+									API.sendChat("@" + quizUsers[i][1] + " Pobjedio si! Cestitam, bit ces zapamcen vjekovima. Nije li to najbolja nagrada sto mozes osvojit? ^^");
+									quizState = false;
+								} else {
+									API.sendChat("@" + quizUsers[i][1] + " Bodova: " + quizLastScore + " / Total Score: " + quizUsers[i][2] + " / Bodova preostalo: " + (parseInt(quizMaxbodova,10) - parseInt(quizUsers[i][2],10)).toString());
+								}
+								break;
+							} else if (i == quizUsers.length - 1) {
+								quizUsers.push([quizLastUID,bBot.userUtilities.lookupUser(quizLastUID).username,quizLastScore]);
+								API.sendChat("@" + quizUsers[i][1] + " Bodova: " + quizLastScore + " / Ukupni rezultat: " + quizUsers[i][2] + " / Bodova preostalo: " + (parseInt(quizMaxbodova,10) - parseInt(quizUsers[i][2],10)).toString());
+							}
+						}
+					} else {
+						quizUsers.push([quizLastUID,bBot.userUtilities.lookupUser(quizLastUID).username,quizLastScore]);
+						API.sendChat("@" + quizUsers[0][1] + " Bodova: " + quizLastScore + " / Ukupni rezlutat: " + quizUsers[0][2] + " / Bodova preostalo: " + (parseInt(quizMaxbodova,10) - parseInt(quizUsers[0][2],10)).toString());
+					}	
+				}
+				
+				//Reset variables
+				quizCycle = 1;
+				quizLastScore = 0;
+				
+				if (quizState) {
+				
+				//Load current song stats
+				console.log(newMedia.author + " " + newMedia.duration);
+				var XMLsource = 'http://musicbrainz.org/ws/2/artist/?query=artist:' + newMedia.author.replace(/ /g,"%20") + '&limit=1';
+			
+				simpleAJAXLib = {
+						
+								init: function () {
+									this.fetchJSON(XMLsource);
+								},
+						 
+								fetchJSON: function (url) {
+									var root = 'https://query.yahooapis.com/v1/public/yql?q=';
+									var yql = 'select * from xml where url="' + url + '"';
+									var proxy_url = root + encodeURIComponent(yql) + '&format=json&diagnostics=false&callback=simpleAJAXLib.display';
+									document.getElementsByTagName('body')[0].appendChild(this.jsTag(proxy_url));
+								},
+						 
+								jsTag: function (url) {
+									var script = document.createElement('script');
+									script.setAttribute('type', 'text/javascript');
+									script.setAttribute('src', url);
+									return script;
+								},
+						 
+								display: function (results) {
+									try {
+										quizCountry = results.query.results.metadata["artist-list"].artist.area.name;
+										quizYear = results.query.results.metadata["artist-list"].artist["life-span"].begin.match(/\d{4}/);
+										quizBand = results.query.results.metadata["artist-list"].artist.name;
+										if (quizCountry != "" && quizYear != "") {
+											console.log(quizCountry + " " + quizYear);
+											API.sendChat("U kojoj godini je/su " + quizBand + " osnovan/i?");
+										}
+									} catch (e) {
+										API.sendChat("Žao nam je, čini se da musicbrainz ne prepoznaje ovaj bend ili umjetnika. Nastavit ćemo za vrijeme sljedeće pjesme.");
+										console.log("Zemlja ili godina nisu pronadjeni.");
+									}			
+								}
+						}
+						simpleAJAXLib.init();	
+				}
+				
+			}
+		// END
         },
         eventWaitlistupdate: function (users) {
             if (users.length < 50) {
@@ -5124,6 +5300,276 @@ API.on(API.ADVANCE, meh);
 						}
 					}
 				},
+		
+		updatePropsCommand: {
+				command: 'updateprops',
+				rank: 'menager', 
+				type: 'exact',
+                functionality: function (chat, cmd) {
+                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                    if (!bbBot.commands.executable(this.rank, chat)) return void (0);
+					else {
+						updateProps();
+						API.sendChat("/me Ažurirao sam listu rekvizita!");
+					}
+				}
+			},
+			
+			//quiz: mini igra (pitanje na svakoj pjesmi)
+			//question 1: year the band/artist started? - 1 point (first correct answer -> active player)
+			//question 2: country - 1 point (active player with max of 2 points)
+			//throw the dices (bonus): 3 (your_score + 30), 6 (score x2), [!Q2] 7 (dj_score + 7), 9 (score x3)
+			//
+			//http://musicbrainz.org/ws/2/artist/?query=artist:pegazus&limit=1
+			
+			quizCommand: {
+				command: 'quiz',  //The command to be called.
+				rank: 'mod', //Minimum user permission to use the command
+				type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+				functionality: function (chat, cmd) {
+					if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+					if (!bbBot.commands.executable(this.rank, chat)) return void (0);
+					else {
+						var msg = chat.message;
+						var maxPoints = msg.substring(cmd.length + 1);
+						if (!isNaN(maxPoints) && maxPoints !== "") {
+								quizMaxpoints = maxPoints;		
+						}
+						//reset 
+						quizBand = "";
+						quizYear = "";
+						quizCountry = "";
+						quizCycle = 1;
+						quizLastUID = null;
+						quizLastScore = 0;
+						quizUsers = [];
+						quizState = true;
+						API.sendChat("/me Kviz je poceo! Pravila su: Kviz je postavljen na " + maxPoints + " poena za pobjedu. Trenutni DJ ne moze da ucestvuje. Treba da se odgovori na 2 pitanja. Na drugi pitanje mozes da odgovoris samo ako si pogodio na prvo.");
+					}
+				}
+			},
+			
+			weatherCommand: {
+				command: 'weather',  //The command to be called. With the standard command literal this would be: !bacon
+				rank: 'user', //Minimum user permission to use the command
+				type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+				functionality: function (chat, cmd) {
+					if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+					if (!bBot.commands.executable(this.rank, chat)) return void (0);
+					else {
+							var msg = chat.message;
+							var lastSpace = msg.lastIndexOf(' ');
+							var parameter = msg.substring(lastSpace + 1);
+							
+							simpleAJAXLib = {
+							
+									init: function () {
+										this.fetchJSON("http://rss.accuweather.com/rss/liveweather_rss.asp?metric=2&locCode=" + parameter);
+									},
+							 
+									fetchJSON: function (url) {
+										var root = 'https://query.yahooapis.com/v1/public/yql?q=';
+										var yql = 'select * from xml where url="' + url + '"';
+										var proxy_url = root + encodeURIComponent(yql) + '&format=json&diagnostics=false&callback=simpleAJAXLib.display';
+										document.getElementsByTagName('body')[0].appendChild(this.jsTag(proxy_url));
+									},
+							 
+									jsTag: function (url) {
+										var script = document.createElement('script');
+										script.setAttribute('type', 'text/javascript');
+										script.setAttribute('src', url);
+										return script;
+									},
+							 
+									display: function (results) {								
+										var temperature = results.query.results.rss.channel.item[0].description;
+										temperature = temperature.replace('<img src="','').replace('">','');
+										temperature = temperature.replace(/&#([0-9]{1,4});/gi, function(match, numStr) {
+													var num = parseInt(numStr, 10); // read num as normal number
+													return String.fromCharCode(num);
+												});
+										API.sendChat("/me " + temperature);
+									}
+							}
+							simpleAJAXLib.init();
+					}
+				}
+			},
+			
+			newsCommand: {
+			command: 'news',  //The command to be called. With the standard command literal this would be: !bacon
+			rank: 'user', //Minimum user permission to use the command
+			type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+			functionality: function (chat, cmd) {
+				if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+				if (!bBot.commands.executable(this.rank, chat)) return void (0);
+				else {
+						var msg = chat.message;
+						var lastSpace = msg.lastIndexOf(' ');
+						var parameter = msg.substring(lastSpace + 1);
+						var selectedRSSFeed = -1;
+						
+						simpleAJAXLib = {
+						
+								init: function () {
+									for (var i = 0; i < rssFeeds.length; i++) {
+										//Match the parameter with the rssFeeds array. If non match, display the howto.
+										if (parameter == rssFeeds[i][0]) {
+											this.fetchJSON(rssFeeds[i][1]);
+											selectedRSSFeed = i;
+										} else if (selectedRSSFeed == -1 && rssFeeds.length - 1 == i) {
+												var rssOptions = "/me Molim koristi kao jedne od sljedeci primjera (ie.'!news football'): '" + rssFeeds[0][0] + "'";
+												for (var i = 1; i < rssFeeds.length; i++) {
+													rssOptions += ", '";
+													rssOptions += rssFeeds[i][0];
+													rssOptions += "'";
+												}
+												rssOptions += ".";											
+												API.sendChat(rssOptions);
+										}
+									}
+								},
+						 
+								fetchJSON: function (url) {
+									var root = 'https://query.yahooapis.com/v1/public/yql?q=';
+									var yql = 'select * from xml where url="' + url + '"';
+									var proxy_url = root + encodeURIComponent(yql) + '&format=json&diagnostics=false&callback=simpleAJAXLib.display';
+									document.getElementsByTagName('body')[0].appendChild(this.jsTag(proxy_url));
+								},
+						 
+								jsTag: function (url) {
+									var script = document.createElement('script');
+									script.setAttribute('type', 'text/javascript');
+									script.setAttribute('src', url);
+									return script;
+								},
+						 
+								display: function (results) {
+									if (selectedRSSFeed != -1) {
+									
+										//var rNumber = Math.floor(Math.random()*rssFeeds[selectedRSSFeed][2]);
+										if (rssFeeds[selectedRSSFeed][3] != rssFeeds[selectedRSSFeed][2] - 1) {
+											rssFeeds[selectedRSSFeed][3] += 1;
+										} else {
+											rssFeeds[selectedRSSFeed][3] = 0;
+										}
+										
+										var long_url = results.query.results.rss.channel.item[rssFeeds[selectedRSSFeed][3]].link;
+											
+										if (rssFeeds[selectedRSSFeed][0] === "oneliners") {
+											var oneliner = results.query.results.rss.channel.item[rssFeeds[selectedRSSFeed][3]].description;
+											oneliner = oneliner.replace('<![CDATA[','').replace(']','').replace('<p>','').replace('</p>','').replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi,'');
+											oneliner = oneliner.replace(/&#([0-9]{1,4});/gi, function(match, numStr) {
+												var num = parseInt(numStr, 10); // read num as normal number
+												return String.fromCharCode(num);
+											});
+											oneliner = oneliner.replace('/ +/','');
+											if (oneliner.length > 249) {
+												var counter=0;
+												for (var x=0; x < oneliner.length; x++) {
+												  setTimeout(function() {API.sendChat("/me " + oneliner.substring(counter*249,(counter+1)*249));counter++;},x*2000);
+												}
+											} else {
+												API.sendChat(						
+													oneliner
+												);
+											}
+										} else if(rssFeeds[selectedRSSFeed][0] === "isles") {
+											var islesDescr = results.query.results.rss.channel.item[rssFeeds[selectedRSSFeed][3]].description;
+											var islesPart1 = islesDescr.substr(0,200);
+											
+											API.sendChat(
+											"/me "
+											+ results.query.results.rss.channel.item[rssFeeds[selectedRSSFeed][3]].pubDate 
+											+ " // "
+											+ islesPart1
+											+ "..."
+											);
+											
+										} else {
+											API.sendChat(
+											"/me "
+											+ results.query.results.rss.channel.item[rssFeeds[selectedRSSFeed][3]].title 
+											+ " (" 
+											+ long_url
+											+ ")");
+										}
+									}
+								}
+						}
+						simpleAJAXLib.init();
+					}
+				}
+			},
+			
+			artistinfoCommand: {
+				command: 'artistinfo',  //The command to be called.
+				rank: 'user', //Minimum user permission to use the command
+				type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+                functionality: function (chat, cmd) {
+                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                    if (!bBot.commands.executable(this.rank, chat)) return void (0);
+                    else {
+
+					simpleAJAXLib = {
+						
+								init: function () {
+									var artist = API.getMedia().author;
+									var url = 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key=b3cb78999a38750fc3d76c51ba2bf6bb&artist=' + artist.replace(/&/g,"%26").replace(/ /g,"%20") + '&autocorrect=1'
+									this.fetchJSON(url);
+								},
+						 
+								fetchJSON: function (url) {
+									var root = 'https://query.yahooapis.com/v1/public/yql?q=';
+									var yql = 'select * from xml where url="' + url + '"';
+									var proxy_url = root + encodeURIComponent(yql) + '&format=json&diagnostics=false&callback=simpleAJAXLib.display';
+									document.getElementsByTagName('body')[0].appendChild(this.jsTag(proxy_url));
+								},
+						 
+								jsTag: function (url) {
+									var script = document.createElement('script');
+									script.setAttribute('type', 'text/javascript');
+									script.setAttribute('src', url);
+									return script;
+								},
+						 
+								display: function (results) {
+								//http://ws.audioscrobbler.com/2.0/?method=artist.gettopTags&artist=Blur&api_key=b3cb78999a38750fc3d76c51ba2bf6bb
+								//todo: character replace (ie. of mice & men -> &)
+									setTimeout(function() {
+										try {
+											var name;
+											name = results.query.results.lfm.artist.name;
+											
+											var picture;
+											picture = results.query.results.lfm.artist.image[3].content
+											
+											var genres;
+											genres = results.query.results.lfm.artist.tags.tag[0].name;
+											genres += ", ";
+											genres += results.query.results.lfm.artist.tags.tag[1].name;
+											genres += ", ";
+											genres += results.query.results.lfm.artist.tags.tag[2].name;
+											
+											var similar;
+											similar = results.query.results.lfm.artist.similar.artist[0].name;
+											similar += ", ";
+											similar += results.query.results.lfm.artist.similar.artist[1].name;
+											similar += ", ";
+											similar += results.query.results.lfm.artist.similar.artist[2].name;
+											
+											API.sendChat("/me [@" + chat.un + "] Ime: " + name + " // Zanr: " + genres + " // Slicno: " + similar + " " + picture);
+										} catch (e) {
+											API.sendChat("/me [@" + chat.un + "] Nažalost, last.fm nije pronašao nikakve oznake za ovaj bend.");
+										}
+									},100);
+								}
+						}
+						simpleAJAXLib.init();	
+					}
+				}
+			},
+		
 			mehautobanCommand: {
                 command: 'mehautoban',
                 rank: 'manager',
