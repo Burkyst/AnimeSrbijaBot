@@ -76,7 +76,7 @@
 	var quizBand = "";
 	var quizYear = "";
 	var quizCountry = "";
-	var quizCycle = 2;
+	var quizCycle = 1;
 	var quizLastUID = null;
 	var quizLastScore = 0;
 	var quizUsers = [];
@@ -1080,7 +1080,7 @@
             }
         },
         eventChat: function (chat) {
-			console.log(chat);
+			/*console.log(chat);*/
             chat.message = linkFixer(chat.message);
             chat.message = decodeEntities(chat.message);
             chat.message = chat.message.trim();
@@ -1545,6 +1545,7 @@
 											API.sendChat("U kojoj godini je/su " + quizBand + " osnovan/i?");
 										}
 									} catch (e) {
+										console.log("Error: " + e.description );
 										API.sendChat("Žao nam je, čini se da musicbrainz ne prepoznaje ovaj bend ili umjetnika. Nastavit ćemo za vrijeme sljedeće pjesme.");
 										console.log("country or year not known");
 									}			
