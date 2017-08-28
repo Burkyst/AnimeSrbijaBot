@@ -71,12 +71,12 @@
 	updateProps();
 	
 	//GLOBAL variables quiz
-	var quizMaxpoints = 300;
+	var quizMaxpoints = 20;
 	var quizState = false;
 	var quizBand = "";
 	var quizYear = "";
 	var quizCountry = "";
-	var quizCycle = 1;
+	var quizCycle = 2;
 	var quizLastUID = null;
 	var quizLastScore = 0;
 	var quizUsers = [];
