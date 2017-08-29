@@ -1545,7 +1545,7 @@
 											API.sendChat("U kojoj godini je/su " + quizBand + " osnovan/i?");
 										}
 									} catch (e) {
-										console.log("Error: " + e.description );
+										console.log("Error: " + e);
 										API.sendChat("Žao nam je, čini se da musicbrainz ne prepoznaje ovaj bend ili umjetnika. Nastavit ćemo za vrijeme sljedeće pjesme.");
 										console.log("country or year not known");
 									}			
