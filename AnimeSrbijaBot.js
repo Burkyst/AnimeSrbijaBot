@@ -1537,9 +1537,15 @@
 						 
 								display: function (results) {
 									try {
-										quizCountry = results.query.results.metadata["artist-list"].artist[0].area.name;
+										if(results.query.results.metadata["artist-list"].count > 1) {
+    quizCountry = results.query.results.metadata["artist-list"].artist[0].area.name;
     quizYear = results.query.results.metadata["artist-list"].artist[0]["life-span"].begin.match(/\d{4}/);
     quizBand = results.query.results.metadata["artist-list"].artist[0].name;
+} else {
+    quizCountry = results.query.results.metadata["artist-list"].artist.area.name;
+    quizYear = results.query.results.metadata["artist-list"].artist["life-span"].begin.match(/\d{4}/);
+    quizBand = results.query.results.metadata["artist-list"].artist.name;
+}
 										if (quizCountry != "" && quizYear != "") {
 											console.log(quizCountry + " " + quizYear);
 											API.sendChat("U kojoj godini je/su " + quizBand + " osnovan/i?");
