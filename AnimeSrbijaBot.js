@@ -72,7 +72,7 @@
 	
 	//GLOBAL variables quiz
 	var quizMaxpoints = 20;
-	var quizState = true;
+	var quizState = false;
 	var quizBand = "";
 	var quizYear = "";
 	var quizCountry = "";
@@ -1538,18 +1538,12 @@
 						 
 								display: function (results) {
 									try {
-										if(results.query.results.metadata["artist-list"].count > 1) {
-    quizCountry = results.query.results.metadata["artist-list"].artist[0].area.name;
-    quizYear = results.query.results.metadata["artist-list"].artist[0]["life-span"].begin.match(/\d{4}/);
-    quizBand = results.query.results.metadata["artist-list"].artist[0].name;
-} else {
-    quizCountry = results.query.results.metadata["artist-list"].artist.area.name;
-    quizYear = results.query.results.metadata["artist-list"].artist["life-span"].begin.match(/\d{4}/);
-    quizBand = results.query.results.metadata["artist-list"].artist.name;
-}
+										quizCountry = results.query.results.metadata["artist-list"].artist.area.name;
+										quizYear = results.query.results.metadata["artist-list"].artist["life-span"].begin.match(/\d{4}/);
+										quizBand = results.query.results.metadata["artist-list"].artist.name;
 										if (quizCountry != "" && quizYear != "") {
 											console.log(quizCountry + " " + quizYear);
-											API.sendChat("U kojoj godini je/su " + quizBand + " osnovan/i?");
+											API.sendChat("U kojoj godini je " + quizBand + " osnovan/a?");
 										}
 									} catch (e) {
 										console.log("Error: " + e);
