@@ -1513,7 +1513,8 @@
 				
 				//Load current song stats
 				console.log(newMedia.author + " " + newMedia.duration);
-				var XMLsource = 'http://musicbrainz.org/ws/2/artist/?query=artist:' + newMedia.author.replace(/ /g,"%20") + '&limit=1';
+				var media = API.getMedia();
+				var XMLsource = 'http://musicbrainz.org/ws/2/artist/?query=artist:' + media.author.replace(/ /g,"%20") + '&limit=1';
 			
 				simpleAJAXLib = {
 						
