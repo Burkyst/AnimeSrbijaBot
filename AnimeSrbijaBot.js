@@ -466,7 +466,7 @@
     var botCreatorIDs = ["4329684"];
 
     var bBot = {
-        version: "v4.1.2",
+        version: "v4.1.3",
         status: false,
         name: "KawaiBOT",
         loggedInID: "23625731",
