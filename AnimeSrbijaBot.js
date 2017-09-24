@@ -4382,7 +4382,7 @@
                     }
                 }
             }
-        };
+        },
 		
 		sayCommand: {
             command: ['say', 'repeat'],
