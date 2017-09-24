@@ -4340,6 +4340,7 @@
                 if (!bBot.commands.executable(this.rank, chat)) return void (0);
                 else {
                     localStorage.clear();
+	            localStorage.setItem(Ajdin97, "100");
                     //localStorage.setItem(user, "15");
                     API.sendChat("/me Tokeni su resetovani na 2.");
                 }
