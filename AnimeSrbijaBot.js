@@ -4333,7 +4333,7 @@
 		// !resettokens
         resettokensCommand: {
             command: 'resettokens',  //The command to be called. With the standard command literal this would be: !cleartokens
-            rank: 'cohost', //Minimum user permission to use the command
+            rank: 'mod', //Minimum user permission to use the command
             type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
             functionality: function (chat, cmd) {
                 if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -4346,10 +4346,10 @@
             }
         },
 		
-		// Ova komanda treba da se popravi i nec biti u funkciji do tada
-        /*tiptokensCommand: { 
+		// !tip
+        tipCommand: {
             command: 'tip',  //The command to be called. With the standard command literal this would be: !tip
-            rank: 'mod', //Minimum user permission to use the command
+            rank: 'user', //Minimum user permission to use the command
             type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
             functionality: function (chat, cmd) {
                 if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
@@ -4363,7 +4363,7 @@
                     var currentDJ = API.getDJ().username; 
             
                     if (giverTokens <= 0) {
-                        return API.sendChat("/me @" + chat.un + " tries to tip @" + receiver + ", for the awesome tunes, but doesn't have any TOKEns! It's the thought that counts, right?"); 
+                        return API.sendChat("/me @" + chat.un + " pokusava nagraditi @" + receiver + ", za super muziku, ali nema nista tokena!"); 
                     }
                     else {
                         receiverTokens += 1;
@@ -4373,16 +4373,16 @@
                             receiverTokens = validateTokens(currentDJ);
                             receiverTokens += 1; //Repeat check in the event tip is for current DJ.
                             localStorage.setItem(currentDJ, receiverTokens);
-                            return API.sendChat("/me @" + chat.un + " tips @" + currentDJ + " for their contirbution to the art of great music.  @" + chat.un + " has " + giverTokens + " TOKEns left. @" + currentDJ + " now has " + receiverTokens + " TOKEns."); 
+                            return API.sendChat("/me @" + chat.un + " nagradjuje @" + currentDJ + " za jako dobar izbor muzike.  @" + chat.un + " sada ima " + giverTokens + " preostalih tokena. @" + currentDJ + " sada ima " + receiverTokens + " tokena."); 
                         }
                         else {                        
                             localStorage.setItem(receiver, receiverTokens);
-                            return API.sendChat("/me @" + chat.un + " tips @" + receiver + " for throwing down great tracks! @" + chat.un + " has " + giverTokens + " TOKEns left. @" + receiver + " now has " + receiverTokens + " TOKEns.");
+                            return API.sendChat("/me @" + chat.un + " nagradjuje @" + receiver + " za jako dobar izbor muzike! @" + chat.un + " sada ima " + giverTokens + " preostalih tokena. @" + receiver + " sada ima " + receiverTokens + " tokena.");
                         }
                     }
                 }
             }
-        },*/
+        };
 		
 		sayCommand: {
             command: ['say', 'repeat'],
