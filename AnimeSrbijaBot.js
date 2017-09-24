@@ -4349,7 +4349,7 @@
 		// !tip
         tipCommand: {
             command: 'tip',  //The command to be called. With the standard command literal this would be: !tip
-            rank: 'user', //Minimum user permission to use the command
+            rank: 'bouncer', //Minimum user permission to use the command
             type: 'startsWith', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
             functionality: function (chat, cmd) {
                 if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
