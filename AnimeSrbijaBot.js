@@ -4367,7 +4367,7 @@
                         return API.sendChat("/me @" + chat.un + " pokusava nagraditi @" + receiver + ", za super muziku, ali nema nista tokena!"); 
                     }
                     else {
-                        receiverTokens += 01;
+                        receiverTokens += 03;
                         giverTokens -= 1;
                         /*localStorage.setItem(chat.un, giverTokens);
 			localStorage.setItem(currentDJ, receiverTokens);*/
