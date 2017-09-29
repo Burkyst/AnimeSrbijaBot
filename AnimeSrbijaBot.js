@@ -4370,7 +4370,8 @@
                         receiverTokens += 1;
                         giverTokens -= 1;
                         localStorage.setItem(chat.un, giverTokens);
-                        if (space === -1) { 
+			return API.sendChat("/me @" + chat.un + " nagradjuje @" + currentDJ + " za jako dobar izbor muzike.  @" + chat.un + " sada ima " + giverTokens + " preostalih tokena. @" + currentDJ + " sada ima " + receiverTokens + " tokena.");
+                        /*if (space === -1) { 
                             receiverTokens = validateTokens(currentDJ);
                             receiverTokens += 1; //Repeat check in the event tip is for current DJ.
                             localStorage.setItem(currentDJ, receiverTokens);
@@ -4379,7 +4380,7 @@
                         else {                        
                             localStorage.setItem(receiver, receiverTokens);
                             return API.sendChat("/me @" + chat.un + " nagradjuje @" + receiver + " za jako dobar izbor muzike! @" + chat.un + " sada ima " + giverTokens + " preostalih tokena. @" + receiver + " sada ima " + receiverTokens + " tokena.");
-                        }
+                        }*/
                     }
                 }
             }
