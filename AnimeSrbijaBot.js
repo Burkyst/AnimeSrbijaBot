@@ -4371,7 +4371,6 @@
                         giverTokens -= 1;
                         /*localStorage.setItem(chat.un, giverTokens);
 			localStorage.setItem(currentDJ, receiverTokens);*/
-			return API.sendChat("/me @" + chat.un + " nagradjuje @" + currentDJ + " za jako dobar izbor muzike.  @" + chat.un + " sada ima " + giverTokens + " preostalih tokena. @" + currentDJ + " sada ima " + receiverTokens + " tokena.");
                         if (space === -1) { 
                             receiverTokens = validateTokens(currentDJ);
                             receiverTokens += 1; //Repeat check in the event tip is for current DJ.
