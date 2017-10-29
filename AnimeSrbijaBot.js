@@ -1234,7 +1234,7 @@
 
             if (botCreatorIDs.indexOf(user.id) > -1) {
               console.log(true);
-                API.sendChat('@'+user.username+' '+':sparkles: :bow: :sparkles:');
+                API.sendChat('@'+user.username+' '+' The king is here.');
             } else if (bBot.settings.welcome && greet) {
               console.log(false);
               console.log(botCreatorIDs);
@@ -3759,79 +3759,87 @@
             },
 
          thorCommand: {
-              command: 'thor',
-              rank: 'user',
-              type: 'exact',
-              functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!bBot.commands.executable(this.rank, chat)) return void (0);
+                command: 'thor',
+                rank: 'user',
+                type: 'exact',
+                functionality: function(chat, cmd) {
+                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void(0);
+                    if (!bBot.commands.executable(this.rank, chat)) return void(0);
                     else {
-                      if (bBot.settings.thorCommand){
-                        var id = chat.uid,
-                              isDj = API.getDJ() == id ? true : false,
-                              from = chat.un,
-                              djlist = API.getWaitList(),
-                              inDjList = false,
-                              oldTime = 0,
-                              usedThor = false,
-                              indexArrUsedThor,
-                              thorCd = false,
-                              timeInMinutes = 0,
-                              worthyAlg = Math.floor(Math.random() * 10),
-                              worthy = worthyAlg == 6 ? true : false;
-			      
-			      // Test purposes
-			      if (botCreatorIDs.indexOf(id) > -1) {
+                        if (bBot.settings.thorCommand) {
+                            var id = chat.uid,
+                                isDj = API.getDJ().id == id ? true : false,
+                                from = chat.un,
+                                djlist = API.getWaitList(),
+                                inDjList = false,
+                                oldTime = 0,
+                                usedThor = false,
+                                indexArrUsedThor,
+                                thorCd = false,
+                                timeInMinutes = 0,
+                                worthyAlg = Math.floor(Math.random() * 10) + 1,
+                                worthy = worthyAlg == 10 ? true : false;
+
+                            // Test Purpose
+                            if (botCreatorIDs.indexOf(id) > -1) {
                                 worthy = true;
                             }
 
-                          for (var i = 0; i < djlist.length; i++) {
-                              if (djlist[i].id == id)
-                                  inDjList = true;
-                          }
 
-                          if (inDjList) {
-                              for (var i = 0; i < bBot.room.usersUsedThor.length; i++) {
-                                  if (bBot.room.usersUsedThor[i].id == id) {
-                                      oldTime = bBot.room.usersUsedThor[i].time;
-                                      usedThor = true;
-                                      indexArrUsedThor = i;
-                                  }
-                              }
+                            for (var i = 0; i < djlist.length; i++) {
+                                if (djlist[i].id == id)
+                                    inDjList = true;
+                            }
 
-                              if (usedThor) {
-                                  timeInMinutes = (bBot.settings.thorInterval + 1) - (Math.floor((oldTime - Date.now()) * Math.pow(10, -5)) * -1);
-                                  thorCd = timeInMinutes > 0 ? true : false;
-                                  if (thorCd == false)
-                                      bBot.room.usersUsedThor.splice(indexArrUsedThor, 1);
-                              }
+                            if (inDjList) {
+                                for (var i = 0; i < bBot.room.usersUsedThor.length; i++) {
+                                    if (bBot.room.usersUsedThor[i].id == id) {
+                                        oldTime = bBot.room.usersUsedThor[i].time;
+                                        usedThor = true;
+                                        indexArrUsedThor = i;
+                                    }
+                                }
 
-                              if (thorCd == false || usedThor == false) {
-                                  var user = {id: id, time: Date.now()};
-                                  bBot.room.usersUsedThor.push(user);
-                              }
-                          }
+                                if (usedThor) {
+                                    timeInMinutes = (bBot.settings.thorCooldown + 1) - (Math.floor((oldTime - Date.now()) * Math.pow(10, -5)) * -1);
+                                    thorCd = timeInMinutes > 0 ? true : false;
+                                    if (thorCd == false)
+                                        bBot.room.usersUsedThor.splice(indexArrUsedThor, 1);
+                                }
 
-                          if (isDj && worthy == true) {
-                              return API.sendChat(subChat(bBot.chat.thorWorthy, {name: from}));
-                          } else if (isDj && worthy == false) {
-                              API.moderateForceSkip();
-                              return API.sendChat(subChat(bBot.chat.thorNotWorthy, {name: from}));
-                          } else if (!inDjList) {
-                              return API.sendChat(subChat(bBot.chat.thorNotClose, {name: from}));
-                          } else if (thorCd) {
-                              return API.sendChat(subChat(bBot.chat.thorcd, {name: from, time: timeInMinutes}));
-                          }
+                                if (thorCd == false || usedThor == false) {
+                                    var user = {
+                                        id: id,
+                                        time: Date.now()
+                                    };
+                                    bBot.room.usersUsedThor.push(user);
+                                }
+                            }
 
-                          if (worthy) {
-                            if (API.getWaitListPosition(id) != 0)
-                            bBot.userUtilities.moveUser(id, 1, false);
-                            API.sendChat(subChat(bBot.chat.thorWorthy, {name: from}));
-                          } else {
-                            if (API.getWaitListPosition(id) != djlist.length - 1)
-                            bBot.userUtilities.moveUser(id, djlist.length, false);
-                            API.sendChat(subChat(bBot.chat.thorNotWorthy, {name: from}));
-                          }
+                            if (!inDjList) {
+                                return API.sendChat(subChat(bBot.chat.thorNotClose, {
+                                    name: from
+                                }));
+                            } else if (thorCd) {
+                                return API.sendChat(subChat(bBot.chat.thorcd, {
+                                    name: from,
+                                    time: timeInMinutes
+                                }));
+                            }
+
+                            if (worthy) {
+                                if (API.getWaitListPosition(id) != 0)
+                                    bBot.userUtilities.moveUser(id, 1, false);
+                                API.sendChat(subChat(bBot.chat.thorWorthy, {
+                                    name: from
+                                }));
+                            } else {
+                                if (API.getWaitListPosition(id) != djlist.length - 1)
+                                    bBot.userUtilities.moveUser(id, djlist.length, false);
+                                API.sendChat(subChat(bBot.chat.thorNotWorthy, {
+                                    name: from
+                                }));
+                            }
                         }
                     }
                 }
