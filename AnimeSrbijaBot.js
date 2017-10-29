@@ -1966,10 +1966,10 @@
 			//AnimeSrbija end
             
         },
-        ommands: {
+        commands: {
             executable: function(minRank, chat) {
                 var id = chat.uid;
-                var perm = basicBot.userUtilities.getPermission(id);
+                var perm = bBot.userUtilities.getPermission(id);
                 var minPerm;
                 switch (minRank) {
                     case 'admin':
