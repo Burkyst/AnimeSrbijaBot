@@ -3975,7 +3975,7 @@
                 }
             },
 
-            uunmuteCommand: {
+            unmuteCommand: {
                 command: 'unmute',
                 rank: 'bouncer',
                 type: 'startsWith',
