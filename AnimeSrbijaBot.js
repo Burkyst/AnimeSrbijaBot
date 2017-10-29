@@ -462,8 +462,8 @@
     };
 	
     var botCreator = "Warix3,Benzi";
-    var botMaintainer = "Warix3"
-    var botCreatorIDs = ["4329684"];
+    var botMaintainer = "Warix3";
+    var botCreatorIDs = [4329684, 4308733];
 
     var bBot = {
         version: "v4.1.3",
@@ -4806,7 +4806,6 @@ command: 'selma',
 rank: 'user',
 type: 'exact',
 functionality: function (chat, cmd) {
-if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
 if (!bBot.commands.executable(this.rank, chat)) return void (0);
 else {
 API.sendChat(subChat(bBot.chat.selma, {name: chat.un}));
