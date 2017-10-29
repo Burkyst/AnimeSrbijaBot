@@ -86,7 +86,7 @@
 			["progrock","http://progressiverockcentral.com/en/feed/",10,0],
 			["rock","http://www.rollingstone.com/music.rss",25,0],
 			["metal","http://www.metalstorm.net/rss/news.xml",15,0],
-			["jokes","http://www.jokesareawesome.com/rss/latest/25/",25,0],
+			["jokes","http://www.jokespalace.com/category/dirty-jokes/feed/",25,0],
 			["oneliners","http://www.jokespalace.com/category/one-liners/feed/",10,0],
 			["chicagobears","http://feeds.feedburner.com/chicagobears/news?format=xml",15,0],
 			["football","http://sports.espn.go.com/espn/rss/nfl/news",16,0],
