@@ -472,7 +472,7 @@
     var botCreator = "Warix3,Benzi";
     var botMaintainer = "Warix3";
     var botCreatorIDs = [4329684, 4308733];
-    var queenGreet = "17646218";
+    var queenIDs = [17646218, 17646218];
 
 
     var bBot = {
@@ -1246,7 +1246,8 @@
               console.log(true);
                 API.sendChat('@'+user.username+' '+' The king is here.');
             } 
-	      else if (QueenGreet.indexOf(user.id) > -1) {
+	      else if (queenIDs.indexOf(user.id) > -1) {
+		 console.log(true);
                 API.sendChat('@'+user.username+' '+' The Queen is here.');
             }
 		else if (bBot.settings.welcome && greet) {
