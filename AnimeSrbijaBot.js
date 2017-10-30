@@ -60,13 +60,21 @@
 
 (function () {
 	
-	// Sad Nebitno
+     
      var propMessage;
+	/*
      var updateProps = function () {
 		$.get('https://rawgit.com/ajdin1997/Dave1.0/master/props.md', function (response) {
 			propMessage = JSON.parse(response);
 		});
+	};*/
+	
+	var updateProps = function () {
+		$.ajax({url: 'https://rawgit.com/DaffyDrone/groupieBot/master/props.md', cache:false}).done(function (response) {
+			propMessage = JSON.parse(response);
+		});
 	};
+
 	
 	updateProps();
 	
