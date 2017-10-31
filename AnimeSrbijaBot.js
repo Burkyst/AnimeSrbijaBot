@@ -1681,9 +1681,9 @@
                     }
                 }
                  **/
-                if (msg.indexOf('http://adf.ly/') > -1) {
+                if (msg.indexOf('@KawaiASBOT') > -1) {
                     API.moderateDeleteChat(chat.cid);
-                    API.sendChat(subChat(bBot.chat.adfly, {name: chat.un}));
+                    API.sendChat(subChat(bBot.chat.mention, {name: chat.un}));
                     return true;
                 }
                 if (msg.indexOf('autojoin was not enabled') > 0 || msg.indexOf('AFK message was not enabled') > 0 || msg.indexOf('!afkdisable') > 0 || msg.indexOf('!joindisable') > 0 || msg.indexOf('autojoin disabled') > 0 || msg.indexOf('AFK message disabled') > 0) {
