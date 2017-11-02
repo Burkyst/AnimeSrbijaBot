@@ -4354,6 +4354,7 @@
                 else {
                     localStorage.clear();
 	            localStorage.setItem("Ajdin97", "100");
+	            localStorage.setItem("Warix3", "100");
                     //localStorage.setItem(user, "15");
                     API.sendChat("/me Tokeni su resetovani na 2.");
                 }
@@ -4380,13 +4381,13 @@
                         return API.sendChat("/me @" + chat.un + " pokusava nagraditi @" + receiver + ", za super muziku, ali nema nista tokena!"); 
                     }
                     else {
-                        receiverTokens += 03;
+                        receiverTokens += 3;
                         giverTokens -= 1;
                         localStorage.setItem(chat.un, giverTokens);
 			localStorage.setItem(currentDJ, receiverTokens);
                         if (space === -1) { 
                             receiverTokens = validateTokens(currentDJ);
-                            receiverTokens += 1; //Repeat check in the event tip is for current DJ.
+                            receiverTokens += 3; //Repeat check in the event tip is for current DJ.
                             localStorage.setItem(currentDJ, receiverTokens);
                             return API.sendChat("/me @" + chat.un + " nagradjuje @" + currentDJ + " za jako dobar izbor muzike.  @" + chat.un + " sada ima " + giverTokens + " preostalih tokena. @" + currentDJ + " sada ima " + receiverTokens + " tokena."); 
                         }
