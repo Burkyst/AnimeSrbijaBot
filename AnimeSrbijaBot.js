@@ -4382,8 +4382,8 @@
                     else {
                         receiverTokens += 03;
                         giverTokens -= 1;
-                        /*localStorage.setItem(chat.un, giverTokens);
-			localStorage.setItem(currentDJ, receiverTokens);*/
+                        localStorage.setItem(chat.un, giverTokens);
+			localStorage.setItem(currentDJ, receiverTokens);
                         if (space === -1) { 
                             receiverTokens = validateTokens(currentDJ);
                             receiverTokens += 1; //Repeat check in the event tip is for current DJ.
