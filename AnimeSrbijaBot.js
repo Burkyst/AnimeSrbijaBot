@@ -1244,7 +1244,7 @@
 
             if (botCreatorIDs.indexOf(user.id) > -1) {
               console.log(true);
-                API.sendChat('@'+user.username+' '+' The king is here.');
+                API.sendChat('@'+user.username+' '+' je upravo usao.');
             } 
 	      else if (queenIDs.indexOf(user.id) > -1) {
 		 console.log(true);
