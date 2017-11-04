@@ -279,6 +279,7 @@
     "nousertokens": "/em ne vidi %%NAME%% u sobi.",
     "selftokens": "/me @%%NAME%%, Znam da bi bilo fora da sam sebi das tokene, mozda neki drugi put.",
     "giventokens": "/me [SU] @%%NAMEFROM%% je upravo dao @%%NAMETO%% nesto tokena da bi nastavio sa super muzikom.",
+    "superuser": "/me @%%NAME%%, Ova komanda je samo za SUPERUSER [SU] korisnike.",
 
 
     "usernotfound": "/me Korisnik nije pronaðen",
