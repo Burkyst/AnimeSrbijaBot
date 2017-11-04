@@ -476,7 +476,7 @@
 
 
     var bBot = {
-        version: "v4.1.3",
+        version: "v4.1.4",
         status: false,
         name: "KawaiBOT",
         loggedInID: "23625731",
@@ -4441,6 +4441,20 @@
                     }
                 }
             },
+		
+				// Whats new?
+        versionCommand: {
+            command: 'version',  //The command to be called. With the standard command literal this would be: !cleartokens
+            rank: 'cohost', //Minimum user permission to use the command
+            type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+            functionality: function (chat, cmd) {
+                if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                if (!bBot.commands.executable(this.rank, chat)) return void (0);
+                else {                 
+                    API.sendChat(bBot.version + "/me : Sta je novo? Tokene mogu davati samo SU Superuser korisnici ili ih mozete zaraditi pomocu ruleta");
+                }
+            }
+        },
 		
 		sayCommand: {
             command: ['say', 'repeat'],
