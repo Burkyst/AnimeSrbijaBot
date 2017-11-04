@@ -4343,7 +4343,7 @@
             }
         },
 		
-		// !resettokens
+		/* !resettokens
         resettokensCommand: {
             command: 'resettokens',  //The command to be called. With the standard command literal this would be: !cleartokens
             rank: 'cohost', //Minimum user permission to use the command
@@ -4359,9 +4359,9 @@
                     API.sendChat("/me Tokeni su resetovani na 2.");
                 }
             }
-        },
+        },*/
 		
-		// !tip
+		/* !tip
         tipCommand: {
             command: 'tip',  //The command to be called. With the standard command literal this would be: !tip
             rank: 'bouncer', //Minimum user permission to use the command
@@ -4398,7 +4398,47 @@
                     }
                 }
             }
-        },
+        }, */
+		
+		gifttokensCommand: {
+                command: 'gifttokens',
+                rank: 'user',
+                type: 'startsWith',
+                functionality: function (chat, cmd) {
+                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                    if (!bBot.commands.executable(this.rank, chat)) return void (0);
+                    else {
+                        var msg = chat.message;
+                        var space = msg.indexOf(' ');
+                        if (space === -1) {
+                            API.sendChat(bBot.chat.stokens);
+                            return false;
+                        }
+                        else {
+                            var name = msg.substring(space + 2);
+                            var user = bBot.userUtilities.lookupUserName(name);
+                            if (user === false || !user.inRoom) {
+                                return API.sendChat(subChat(bBot.chat.nousertokens, {name: name}));
+                            }
+                            else if (user.username === chat.un) {
+                                return API.sendChat(subChat(bBot.chat.selftokens, {name: name}));
+                            }
+                            else if (botCreatorIDs.indexOf(user.id) > -1) {
+                            console.log(true);
+							
+							var user = bBot.userUtilities.lookupUserName(name);
+							var startingTokens = validateTokens(user);
+							localStorage.setItem(user, "2");
+                                return API.sendChat(subChat(bBot.chat.giventokens, {nameto: user.username, namefrom: chat.un}));
+							}
+							else {
+                                return API.sendChat(subChat(bBot.chat.superuser, {name: name}));
+                            }
+							
+                        }
+                    }
+                }
+            },
 		
 		sayCommand: {
             command: ['say', 'repeat'],
