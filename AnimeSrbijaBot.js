@@ -624,7 +624,7 @@
                     var pos = Math.floor((Math.random() * API.getWaitList().length) + 1);
                     var user = bBot.userUtilities.lookupUser(winner);
                     var name = user.username;
-		    localStorage.setItem(winner, "3");
+		    localStorage.setItem(name, "3");
                     API.sendChat(subChat(bBot.chat.winnerpicked, {name: name, position: pos}));
                     setTimeout(function (winner, pos) {
                         bBot.userUtilities.moveUser(winner, pos, false);
