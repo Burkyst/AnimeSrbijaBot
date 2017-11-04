@@ -4403,11 +4403,14 @@
 		gifttokensCommand: {
                 command: 'gifttokens',
                 rank: 'user',
-                type: 'startsWith',
+                type: 'startsWith',			
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                     if (!bBot.commands.executable(this.rank, chat)) return void (0);
-                    else if (botCreatorIDs.indexOf(user.id) > -1)  {
+		    var user = chat.un; 
+		    var id = chat.uid;
+		    if (botCreatorIDs.indexOf(user.id) > -1);
+                    else {
                         var msg = chat.message;
                         var space = msg.indexOf(' ');
                         if (space === -1) {
@@ -4429,9 +4432,9 @@
 							localStorage.setItem(user, "2");
                                 return API.sendChat(subChat(bBot.chat.giventokens, {nameto: user.username, namefrom: chat.un}));
 							}
-							else {
-                                return API.sendChat(subChat(bBot.chat.superuser, {name: name}));
-                            }
+							/*else {
+                                API.sendChat(subChat(bBot.chat.superuser, {name: name}));
+                            }*/
 							
                         }
                     }
