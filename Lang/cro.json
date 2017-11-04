@@ -251,7 +251,7 @@
 
 
     "isopen": "/me [!roulette] @djs :white_check_mark: Rulet je uspešno pokrenut. Kucaj !join da bi učestvovao. !leave da bi napustio.",
-    "winnerpicked": "/me :white_check_mark: Pobednik je odabran! @%%NAME%% na poziciju %%POSITION%%.",
+    "winnerpicked": "/me :white_check_mark: Pobednik je odabran! @%%NAME%% je osvojio nesto tokena da moze nastavit sa dobrom muzikom i %%POSITION%% mjesto na listi cekanja. ",
     "ball": "/me [!8ball] %%NAME%%, bote \"%%QUESTION%%\"? - %%BOTNAME%%: \"%%RESPONSE%%\"",
     "notghosting": "[%%NAME1%%] %%NAME2%% je regularan korisnik u sobi, a ne vrsta korisnika podešena da radi automatski.",
     "ghosting": "[%%NAME1%%] %%NAME2%% je vrsta korisnika podešena da radi automatski ili korisnik nije tu.",
