@@ -3,7 +3,7 @@
 
     Custom bot for a Plug.dj community, based on dave1.0 script
 	
-    This script is modified by Warix3 (Toni Pejić) kawaibot.ga
+    This script is  by Warix3 (Toni Pejić) kawaibot.ga
     And AnimeSrbija commands are added by Warix3.
 	
     Copyright (c) 2016 Warix3
@@ -4407,7 +4407,7 @@
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                     if (!bBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
+                    else if (botCreatorIDs.indexOf(user.id) > -1)  {
                         var msg = chat.message;
                         var space = msg.indexOf(' ');
                         if (space === -1) {
@@ -4423,9 +4423,7 @@
                             else if (user.username === chat.un) {
                                 return API.sendChat(subChat(bBot.chat.selftokens, {name: name}));
                             }
-                            else if (botCreatorIDs.indexOf(user.id) > -1) {
-                            console.log(true);
-							
+                            else {			
 							var user = bBot.userUtilities.lookupUserName(name);
 							var startingTokens = validateTokens(user);
 							localStorage.setItem(user, "2");
