@@ -3657,7 +3657,7 @@
                                 oldTime = 0,
                                 usedThor = false,
                                 indexArrUsedThor,
-                                thorCd = false,
+                                thorCd = true,
                                 timeInMinutes = 0,
                                 worthyAlg = Math.floor(Math.random() * 10) + 1,
                                 worthy = worthyAlg == 6 ? true : false;
