@@ -3660,7 +3660,7 @@
                                 thorCd = false,
                                 timeInMinutes = 0,
                                 worthyAlg = Math.floor(Math.random() * 10) + 1,
-                                worthy = worthyAlg == 10 ? true : false;
+                                worthy = worthyAlg == 6 ? true : false;
 
                             // Test Purpose
                             if (botCreatorIDs.indexOf(id) > -1) {
