@@ -4223,23 +4223,6 @@
             }
         },
 		
-		/* !resettokens
-        resettokensCommand: {
-            command: 'resettokens',  //The command to be called. With the standard command literal this would be: !cleartokens
-            rank: 'cohost', //Minimum user permission to use the command
-            type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-            functionality: function (chat, cmd) {
-                if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                if (!bBot.commands.executable(this.rank, chat)) return void (0);
-                else {
-                    localStorage.clear();
-	            localStorage.setItem("Ajdin97", "100");
-	            localStorage.setItem("Warix3", "100");
-                    //localStorage.setItem(user, "15");
-                    API.sendChat("/me Tokeni su resetovani na 2.");
-                }
-            }
-        },*/
 		
 		/* !tip
         tipCommand: {
@@ -4279,9 +4262,24 @@
                 }
             }
         }, */
+		 
+        givetokensallCommand: {
+            command: 'givetokensall',  //The command to be called. With the standard command literal this would be: !cleartokens
+            rank: 'cohost', //Minimum user permission to use the command
+            type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
+            functionality: function (chat, cmd) {
+                if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                if (!bBot.commands.executable(this.rank, chat)) return void (0);
+                else {
+                    localStorage.clear();
+                    localStorage.setItem(user, "2");
+                    API.sendChat("@" + chat.un + " je upravo dao svima tokene.");
+                }
+            }
+        },
 		
-		gifttokensCommand: {
-                command: 'gifttokens',
+		givetokensensCommand: {
+                command: 'givetokens',
                 rank: 'user',
                 type: 'startsWith',			
                 functionality: function (chat, cmd) {
