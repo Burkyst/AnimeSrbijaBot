@@ -237,7 +237,12 @@
     "bouncer": "Bot ne može premeštati usere ako je pokrenut od strane bouncer-a.",
     "online": "/me :white_check_mark: %%BOTNAME%% %%VERSION%% uspešno aktiviran. - Made by Warix3 (esdet), Ajdin97, Benzi, roxor",
      "mention": "/me @%%NAME%%, Zdravo, ja sam bot ove sobe, ako imas neka pitanja molim oznaci drugog admina.",
-
+	
+    "rpslsempty": "\/me [!rps] Da bi igrao Rock Paper Scissors, koristi !rps {Choice}",
+    "rpslserror": "\/me Pogresan odabir, pokusaj ponovo!",
+    "rpslswin": "Pobjedio si i dobio nesto tokena %%NAME%%!",
+    "rpslslose": "Izgubio si %%NAME%%!",
+    "rpslsdraw": "Nerjeseno je %%NAME%%!",
 
 
     "welcome": "/me Dobrodošao/la %%NAME%% u sobu Anime Srbije. Pravila i ostale linkove možeš pronaći u opisu sobe.",
