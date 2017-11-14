@@ -4180,13 +4180,13 @@
                     //Display Outcome
                     if (outcome[3] == 0) {
                         if (updatedTokens === 1) {
-                            setTimeout(function() {API.sendChat("/me @" + chat.un + ", nemaš sreće, luzeru! Nisi pobjedio. Imas 1 TOKEn. Čuo sam da je kockanje zarazno... želis pokušati ponovo?")}, 7000);   
+                            setTimeout(function() {API.sendChat("/me @" + chat.un + ", nemaš sreće! Nisi pobjedio. Preostalo 1 TOKEn.")}, 7000);   
                         }  
                         else if (updatedTokens === 0) {
-                            setTimeout(function() {API.sendChat("/me @" + chat.un + ", nemaš sreće, luzeru! Nisi pobjedio. Nemas vise TOKena... gotov si, ya bum!")}, 7000);
+                            setTimeout(function() {API.sendChat("/me @" + chat.un + ", nemaš sreće! Nisi pobjedio. Nemas vise TOKena.")}, 7000);
                         }
                         else {
-                            setTimeout(function() {API.sendChat("/me @" + chat.un + ", nemaš sreće, luzeru! Nisi dobio nista. Imas " + updatedTokens + " TOKEna. Čuo sam da je kockanje zarazno... želis pokušati ponovo?")}, 7000);
+                            setTimeout(function() {API.sendChat("/me @" + chat.un + ", nemaš sreće, luzeru! Nisi dobio nista. Imas " + updatedTokens + " TOKEna.")}, 7000);
                         }
                     }
                     else if (outcome[3] == (bet * 7)) {
