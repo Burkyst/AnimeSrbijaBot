@@ -476,7 +476,7 @@
 
 
     var bBot = {
-        version: "v4.1.4",
+        version: "v4.1.5",
         status: false,
         name: "KawaiBOT",
         loggedInID: "23625731",
@@ -4437,7 +4437,7 @@
                 if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                 if (!bBot.commands.executable(this.rank, chat)) return void (0);
                 else {                 
-                    API.sendChat(bBot.version + "/me : Sta je novo? Tokene mogu davati samo SU Superuser korisnici ili ih mozete zaraditi pomocu ruleta");
+                    API.sendChat(bBot.version + "/me : Sta je novo? Zaradite tokene sa Komandom !rps [izbor], skraceno or rock paper scissors, pazite ako dobijete imate nagradu ako izgubite gubite vise od poena. Izbori su rock, paper, scissors, lizard, spock.");
                 }
             }
         },
