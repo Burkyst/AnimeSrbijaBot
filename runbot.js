@@ -4228,83 +4228,101 @@
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslsdraw, {name: chat.un}));
                             
                             } else if (botChoice == "rock" && userChoice == "paper") {
+				    localStorage.setItem(chat.un, "2");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
-				localStorage.setItem(chat.un, "2");
                             
                             } else if (botChoice == "rock" && userChoice == "scissors") {
+				 API.moderateRemoveDJ(chat.un);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
-                                API.moderateRemoveDJ(chat.un);
+                                
                             
                             } else if (botChoice == "rock" && userChoice == "lizard") {
+				     API.moderateRemoveDJ(chat.un);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
-                                API.moderateRemoveDJ(chat.un);
+                               
                             
                             } else if (botChoice == "rock" && userChoice == "spock") {
-                                return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				    localStorage.setItem(chat.un, "1");
+                                return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
+				    
                             
                             } else if (botChoice == "paper" && userChoice == "rock") {
+				     API.moderateRemoveDJ(chat.un);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
-                                API.moderateRemoveDJ(chat.un);
+                               
                             
                             } else if (botChoice == "paper" && userChoice == "scissors") {
-                                return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				    localStorage.setItem(chat.un, "2");
+                                return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
+				    
                             
                             } else if (botChoice == "paper" && userChoice == "lizard") {
+				     localStorage.setItem(chat.un, "1");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
-				    localStorage.setItem(chat.un, "1");
+				   
                             
                             } else if (botChoice == "paper" && userChoice == "spock") {
+				    API.moderateRemoveDJ(chat.un);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
-                                API.moderateRemoveDJ(chat.un);
+                                
                             
                             } else if (botChoice == "scissors" && userChoice == "rock") {
-                                return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				    localStorage.setItem(chat.un, "1");
+                                return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
+				    
                             
                             } else if (botChoice == "scissors" && userChoice == "paper") {
+				    API.moderateRemoveDJ(chat.un);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
-                                API.moderateRemoveDJ(chat.un);
+                                
                             
                             } else if (botChoice == "scissors" && userChoice == "lizard") {
+				    API.moderateRemoveDJ(chat.un);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
-                                API.moderateForceSkip();
+        
                             
                             } else if (botChoice == "scissors" && userChoice == "spock") {
-                                return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				    localStorage.setItem(chat.un, "2");
+                                return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
+				    
                             
                             } else if (botChoice == "lizard" && userChoice == "rock") {
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
                             
                             } else if (botChoice == "lizard" && userChoice == "paper") {
+				    API.moderateRemoveDJ(chat.un);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
-                                API.moderateRemoveDJ(chat.un);
+                                
                             
                             } else if (botChoice == "lizard" && userChoice == "scissors") {
+				    API.moderateRemoveDJ(chat.un);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
-                                API.moderateRemoveDJ(chat.un);
+                                
                             
                             } else if (botChoice == "lizard" && userChoice == "spock") {
+				    API.moderateRemoveDJ(chat.un);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
-                                API.moderateRemoveDJ(chat.un);
+                                
                             
                             } else if (botChoice == "spock" && userChoice == "rock") {
+				    API.moderateRemoveDJ(chat.un);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
-                                API.moderateRemoveDJ(chat.un);
+                                
                             
                             } else if (botChoice == "spock" && userChoice == "paper") {
+				     localStorage.setItem(chat.un, "2");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
-				    localStorage.setItem(chat.un, "2");
+				   
                             
                             } else if (botChoice == "spock" && userChoice == "scissors") {
+				    API.moderateRemoveDJ(chat.un);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
-                                API.moderateRemoveDJ(chat.un);
+                                
                             
                             } else if (botChoice == "spock" && userChoice == "lizard") {
-                                return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				    localStorage.setItem(chat.un, "2");
+                                return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
+				    
                             
                             } else {
                                 return API.sendChat(bBot.chat.rpserror, {botchoice: botChoice, userchoice: userChoice});
