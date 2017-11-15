@@ -1,4 +1,8 @@
 {
+	"Dares": [
+             "Posalji srce osobi koje je trenutno DJ."
+		],
+	
       "Truths": [
              "Da li te iko ikada video potpuno golu/og. Ako da, ko?",
 "Šta je najgluplja stvar koju ste učinili pred nekim?",
@@ -272,6 +276,8 @@
     "gameon": "/me @djs %%NAME%% Je pokrenuo PickTheNumber. Napiši broj od :one: do :nine:. Ukoliko te bot označi sa istim brojem koji si napisao pobedio si. Ukoliko ima više pobednika računa se onaj prvi koga je bot označio.",
     "trutherror": "/me [Truth] %%NAME%% Greška... Pokušaj ponovo, verovatno si označio nekoga.",
     "truth": "/me [!truth] %%NAME%% %%FORTUNE%%",
+     "trutherror": "/me [!dare] %%NAME%% Greška... Pokušaj ponovo, ne mozes oznacavati nekoga. Izazov se daje samo tebi.",
+    "truth": "/me [!dare] %%NAME%% %%CHALLENGE%%",
 
 
     "alreadyadding": "/me Korisnik je već dodat! Premeštanje na %%POSITION%%.",
