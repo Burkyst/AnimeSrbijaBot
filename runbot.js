@@ -4529,6 +4529,42 @@
                     }
                 }
             },
+		
+		dareCommand: {
+                command: 'dare',
+                rank: 'user',
+                type: 'startsWith',
+                getDare: function (chat) {
+                    var c = Math.floor(Math.random() * bBot.chat.Dares.length);
+                    return bBot.chat.Dares[c];
+                },
+                functionality: function (chat, cmd) {
+                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                    if (!bBot.commands.executable(this.rank, chat)) return void (0);
+                    else {
+                        var msg = chat.message;
+
+                        var space = msg.indexOf(' ');
+                        if (space === -1) {
+                            API.sendChat(subChat(bBot.chat.dare, {name: chat.un, challenge: this.getDare()}));
+                            return false;
+                        }
+                        else {
+                            var name = msg.substring(space + 2);
+                            var user = bBot.userUtilities.lookupUserName(name);
+                            if (user === false || !user.inRoom) {
+                                return API.sendChat(subChat(bBot.chat.dareerror, {name: name}));
+                            }
+                            else if (user.username === chat.un) {
+                                return API.sendChat(subChat(bBot.chat.dareerror, {name: name}));
+                            }
+                            else {
+                                return API.sendChat(subChat(bBot.chat.dareerror, {name: name}));
+                            }
+                        }
+                    }
+                }
+            },
 
             subscribeCommand: {
                 command: ['subscribe'],
