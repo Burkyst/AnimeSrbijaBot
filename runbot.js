@@ -2431,7 +2431,7 @@
                 }
             },
 
-            /*deletechatCommand: {
+            deletechatCommand: {
                 command: 'deletechat',
                 rank: 'mod',
                 type: 'startsWith',
@@ -2444,36 +2444,16 @@
                         var name = msg.substring(cmd.length + 2);
                         var user = bBot.userUtilities.lookupUserName(name);
                         if (typeof user === 'boolean') return API.sendChat(subChat(bBot.chat.invaliduserspecified, {name: chat.un}));
-                        var chats = $('.from');
-                        var message = $('.message');
-                        var emote = $('.emote');
-                        var from = $('.un.clickable');
-                        for (var i = 0; i < chats.length; i++) {
-                            var n = from[i].textContent;
-                            if (name.trim() === n.trim()) {
-
-                                // var messagecid = $(message)[i].getAttribute('data-cid');
-                                // var emotecid = $(emote)[i].getAttribute('data-cid');
-                                // API.moderateDeleteChat(messagecid);
-
-                                // try {
-                                //     API.moderateDeleteChat(messagecid);
-                                // }
-                                // finally {
-                                //     API.moderateDeleteChat(emotecid);
-                                // }
-
-                                if (typeof $(message)[i].getAttribute('data-cid') == "undefined"){
-                                    API.moderateDeleteChat($(emote)[i].getAttribute('data-cid')); // works well with normal messages but not with emotes due to emotes and messages are seperate.
-                                } else {
-                                    API.moderateDeleteChat($(message)[i].getAttribute('data-cid'));
-                                }
-                            }
+                        for (var i = 1; i < bBot.room.chatMessages.length; i++) {
+                          if (bBot.room.chatMessages[i].indexOf(user.id) > -1){
+                            API.moderateDeleteChat(bBot.room.chatMessages[i][0]);
+                            bBot.room.chatMessages[i].splice(0);
+                          }
                         }
                         API.sendChat(subChat(bBot.chat.deletechat, {name: chat.un, username: name}));
                     }
                 }
-            },*/
+            },
 
             emojiCommand: {
                 command: 'emoji',
@@ -4214,6 +4194,8 @@
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
                     if (!bBot.commands.executable(this.rank, chat)) return void (0);
                     else {
+			var id = chat.uid;
+			var djlist = API.getWaitList(); 
                         var msg = chat.message;
                         var space = msg.indexOf(' ');
                         if (space === -1) {
@@ -4231,15 +4213,13 @@
 				    localStorage.setItem(chat.un, "2");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
                             
-                            } else if (botChoice == "rock" && userChoice == "scissors") {
-				 var user = chat.un;  
-				 API.moderateRemoveDJ(user);
+                            } else if (botChoice == "rock" && userChoice == "scissors" !== -1 || API.getWaitListPosition(id) != djlist.length - 1) {
+				 bBot.userUtilities.moveUser(id, djlist.length, false);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
                                 
                             
-                            } else if (botChoice == "rock" && userChoice == "lizard") {
-				    var user = chat.un;  
-				 API.moderateRemoveDJ(user);
+                            } else if (botChoice == "rock" && userChoice == "lizard" !== -1 || API.getWaitListPosition(id) != djlist.length - 1) {
+				 bBot.userUtilities.moveUser(id, djlist.length, false);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
                                
                             
@@ -4248,9 +4228,8 @@
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				    
                             
-                            } else if (botChoice == "paper" && userChoice == "rock") {
-				     var user = chat.un;  
-				 API.moderateRemoveDJ(user);
+                            } else if (botChoice == "paper" && userChoice == "rock" !== -1 || API.getWaitListPosition(id) != djlist.length - 1) {
+				bBot.userUtilities.moveUser(id, djlist.length, false);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
                                
                             
@@ -4264,9 +4243,8 @@
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				   
                             
-                            } else if (botChoice == "paper" && userChoice == "spock") {
-				    var user = chat.un;  
-				 API.moderateRemoveDJ(user);
+                            } else if (botChoice == "paper" && userChoice == "spock" !== -1 || API.getWaitListPosition(id) != djlist.length - 1) {
+				 bBot.userUtilities.moveUser(id, djlist.length, false);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
                                 
                             
@@ -4275,15 +4253,13 @@
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				    
                             
-                            } else if (botChoice == "scissors" && userChoice == "paper") {
-				    var user = chat.un;  
-				 API.moderateRemoveDJ(user);
+                            } else if (botChoice == "scissors" && userChoice == "paper" !== -1 || API.getWaitListPosition(id) != djlist.length - 1) {
+				bBot.userUtilities.moveUser(id, djlist.length, false);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
                                 
                             
-                            } else if (botChoice == "scissors" && userChoice == "lizard") {
-				    var user = chat.un;  
-				 API.moderateRemoveDJ(user);
+                            } else if (botChoice == "scissors" && userChoice == "lizard" !== -1 || API.getWaitListPosition(id) != djlist.length - 1) {
+				bBot.userUtilities.moveUser(id, djlist.length, false);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
         
                             
@@ -4295,27 +4271,23 @@
                             } else if (botChoice == "lizard" && userChoice == "rock") {
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
                             
-                            } else if (botChoice == "lizard" && userChoice == "paper") {
-				    var user = chat.un;  
-				 API.moderateRemoveDJ(user);
+                            } else if (botChoice == "lizard" && userChoice == "paper" !== -1 || API.getWaitListPosition(id) != djlist.length - 1) {
+				 bBot.userUtilities.moveUser(id, djlist.length, false);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
                                 
                             
-                            } else if (botChoice == "lizard" && userChoice == "scissors") {
-				   var user = chat.un;  
-				 API.moderateRemoveDJ(user);
+                            } else if (botChoice == "lizard" && userChoice == "scissors" !== -1 || API.getWaitListPosition(id) != djlist.length - 1) {
+				bBot.userUtilities.moveUser(id, djlist.length, false);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
                                 
                             
-                            } else if (botChoice == "lizard" && userChoice == "spock") {
-				   var user = chat.un;  
-				 API.moderateRemoveDJ(user);
+                            } else if (botChoice == "lizard" && userChoice == "spock" !== -1 || API.getWaitListPosition(id) != djlist.length - 1) {
+				  bBot.userUtilities.moveUser(id, djlist.length, false);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
                                 
                             
-                            } else if (botChoice == "spock" && userChoice == "rock") {
-				    var user = chat.un;  
-				 API.moderateRemoveDJ(user);
+                            } else if (botChoice == "spock" && userChoice == "rock" !== -1 || API.getWaitListPosition(id) != djlist.length - 1) {
+				 bBot.userUtilities.moveUser(id, djlist.length, false);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
                                 
                             
@@ -4324,9 +4296,8 @@
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				   
                             
-                            } else if (botChoice == "spock" && userChoice == "scissors") {
-				    var user = chat.un;  
-				 API.moderateRemoveDJ(user);
+                            } else if (botChoice == "spock" && userChoice == "scissors" !== -1 || API.getWaitListPosition(id) != djlist.length - 1) {
+				bBot.userUtilities.moveUser(id, djlist.length, false);
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslslose, {name: chat.un}));
                                 
                             
