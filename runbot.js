@@ -4420,6 +4420,7 @@
 							else {
                                 API.sendChat(subChat(bBot.chat.superuser, {name: name}));
                             }
+				}
 							
                         }
                     }
