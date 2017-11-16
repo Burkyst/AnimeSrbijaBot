@@ -4396,7 +4396,6 @@
                     if (!bBot.commands.executable(this.rank, chat)) return void (0);
 		    var user = chat.un; 
 		    var id = chat.uid;
-                    else {
                         var msg = chat.message;
                         var space = msg.indexOf(' ');
                         if (space === -1) {
@@ -4418,9 +4417,9 @@
 							localStorage.setItem(user.username, "2");
                                 return API.sendChat(subChat(bBot.chat.giventokens, {nameto: user.username, namefrom: chat.un}));
 							}
-							/*else {
+							else {
                                 API.sendChat(subChat(bBot.chat.superuser, {name: name}));
-                            }*/
+                            }
 							
                         }
                     }
