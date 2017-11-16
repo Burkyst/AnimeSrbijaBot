@@ -4370,23 +4370,7 @@
                 }
             }
         }, */
-		 
-        /*givetokensallCommand: {
-            command: 'givetokensall',  //The command to be called. With the standard command literal this would be: !cleartokens
-            rank: 'user', //Minimum user permission to use the command
-            type: 'exact', //Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-            functionality: function (chat, cmd) {
-                if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                if (!bBot.commands.executable(this.rank, chat)) return void (0);
-		  if (botCreatorIDs.indexOf(user.id) > -1);
-                else {
-                    localStorage.clear();
-                    localStorage.setItem(user, "2");
-                    API.sendChat("@" + chat.un + " je upravo dao svima tokene.");
-                }
-            }
-        },*/
-		
+		 	
 		/* BROKEN
 		givetokensensCommand: {
                 command: 'givetokens',
@@ -4427,6 +4411,48 @@
                     }
                 }
             },*/
+		
+		givetokensCommand: {
+                command: 'givetokens',
+                rank: 'user',
+                type: 'startsWith',			
+                functionality: function (chat, cmd) {
+                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                    if (!bBot.commands.executable(this.rank, chat)) return void (0);
+		    var user = chat.un; 
+		    var id = chat.uid;
+		    if (botCreatorIDs.indexOf(user.id) > -1) {
+                        var msg = chat.message;
+                        var space = msg.indexOf(' ');
+                        if (space === -1) {
+                            API.sendChat(bBot.chat.stokens);
+                            return false;
+                        }
+                        else {
+                            var name = msg.substring(space + 2);
+                            var user = bBot.userUtilities.lookupUserName(name);
+                            if (user === false || !user.inRoom) {
+                                return API.sendChat(subChat(bBot.chat.nousertokens, {name: name}));
+                            }
+                            else if (user.username === chat.un) {
+                                return API.sendChat(subChat(bBot.chat.selftokens, {name: name}));
+                            }
+                            else {			
+							var user = bBot.userUtilities.lookupUserName(name);
+							var receivedTokens = validateTokens(user.username);
+							receivedTokens += 3;
+							localStorage.setItem(user.username, receivedTokens);
+                                return API.sendChat(subChat(bBot.chat.giventokens, {nameto: user.username, namefrom: chat.un}));
+							}
+							
+                        }
+                    }
+                    else {
+                    API.sendChat(subChat(bBot.chat.superuser, {name: chat.un}));
+                    }
+                    
+                }
+            },
 		
 				// Whats new?
         versionCommand: {
