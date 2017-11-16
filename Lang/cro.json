@@ -286,7 +286,7 @@
     "thorcd": "\/me [!thor] @%%NAME%% možeš pokusati ponovo za %%TIME%% minuta.",
     "thorWorthy": "\/me [!thor] @%%NAME%% dostojan si :hammer:, čestitam!",
     "thorNotWorthy": "\/me [!thor] @%%NAME%% nisi dostojan, pokušaj ponovo.",
-    "stokens": "/me Moras oznaciti kome zelis podijeliti tokene, zar ne?",
+    "stokens": "/me @%%NAME%%, Moras oznaciti kome zelis podijeliti tokene, zar ne?",
     "nousertokens": "/em ne vidi %%NAME%% u sobi.",
     "selftokens": "/me @%%NAME%%, Znam da bi bilo fora da sam sebi das tokene, mozda neki drugi put.",
     "giventokens": "/me [SU] @%%NAMEFROM%% je upravo dao @%%NAMETO%% nesto tokena da bi nastavio sa super muzikom.",
