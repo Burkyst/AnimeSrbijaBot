@@ -4396,7 +4396,6 @@
                     if (!bBot.commands.executable(this.rank, chat)) return void (0);
 		    var user = chat.un; 
 		    var id = chat.uid;
-		    if (botCreatorIDs.indexOf(user.id) > -1);
                     else {
                         var msg = chat.message;
                         var space = msg.indexOf(' ');
@@ -4413,7 +4412,7 @@
                             else if (user.username === chat.un) {
                                 return API.sendChat(subChat(bBot.chat.selftokens, {name: name}));
                             }
-                            else {			
+                            else if (botCreatorIDs.indexOf(user.id) > -1) {			
 							var user = bBot.userUtilities.lookupUserName(name);
 							var startingTokens = validateTokens(user);
 							localStorage.setItem(user.username, "2");
