@@ -6,7 +6,7 @@
     This script is  by Warix3 (Toni Pejić) kawaibot.ga
     And AnimeSrbija commands are added by Warix3.
 	
-    Copyright (c) 2016 Warix3
+    Copyright (c) 2016 Warix
     Please do not copy or modify without permission
     from the respected owner(s) and developer(s).
 	
@@ -421,7 +421,7 @@
             
             //Check for existing user tokens
             if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
-                 localStorage.setItem(user, "1");
+                 localStorage.setItem(user, "100");
                  tokens = localStorage.getItem(user);
             }
             else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined") {
