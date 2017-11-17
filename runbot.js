@@ -4572,7 +4572,7 @@
 
                         var space = msg.indexOf(' ');
                         if (space === -1) {
-                            API.sendChat(subChat(bBot.chat.dare, {name: chat.un, challenge: this.getDare()}));
+                            API.sendChat(subChat(bBot.chat.dare, {name: chat.un, fortune: this.getDare()}));
                             return false;
                         }
                         else {
