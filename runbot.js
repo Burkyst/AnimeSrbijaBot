@@ -624,7 +624,7 @@
                     var pos = Math.floor((Math.random() * API.getWaitList().length) + 1);
                     var user = bBot.userUtilities.lookupUser(winner);
                     var name = user.username;
-		    localStorage.setItem(name, "4");
+		    localStorage.setItem(name, "300");
                     API.sendChat(subChat(bBot.chat.winnerpicked, {name: name, position: pos}));
                     setTimeout(function (winner, pos) {
                         bBot.userUtilities.moveUser(winner, pos, false);
@@ -4112,9 +4112,9 @@
        
                     //Fix bet if blank
                     if (bet == null || isNaN(bet)) {
-                        bet = 1;
+                        bet = 100;
                     }
-                    bet = Math.round(bet);   5   
+                    bet = Math.round(bet);     
                                    
                     var playerTokens = checkTokens(bet, user);  
                     
@@ -4123,7 +4123,7 @@
                         if (playerTokens[0] === 0){
                             return API.sendChat("/me [!slots] @" + chat.un + " pokusava iskoristiti " + bet + " TOKEn na ChemSlots, ali nema ni jedan! Kako neugodno."); 
                         } 
-                        else if (playerTokens[0] === 1) {
+                        else if (playerTokens[0] === 100) {
                             return API.sendChat("/me [!slots] @" + chat.un + " pokusava iskoristiti " + bet + " TOKEn na ChemSlots, ali ima samo jedan TOKEn! Mislis da imas srece?"); 
                         }
                         else {
@@ -4143,12 +4143,12 @@
                     }
                     
                     //Display Slots
-                    if (space === -1 || bet == 1) { 
+                    if (space === -100 || bet == 100) { 
                         //Start Slots
-                        API.sendChat("/me [!slots] @" + chat.un + " ulaže 1 TOKEn na ChemSlots, i povlači ručicu ... i gleda kako se ChemSlots okrece.");
+                        API.sendChat("/me [!slots] @" + chat.un + " ulaže 100 TOKEn na ChemSlots, i povlači ručicu ... i gleda kako se ChemSlots okrece.");
                         setTimeout(function() {API.sendChat("/me  Napokon se zaustavlja na: " + outcome[0] + outcome[1] + outcome[2])}, 5000);
                     } 
-                    else if (bet > 1) { 
+                    else if (bet > 100) { 
                         //Start Slots
                         API.sendChat("/me [!slots] @" + chat.un + " ulaže " + bet + " TOKEna na ChemSlots, i povlači ručicu... ... i gleda kako se ChemSlots okrece.");
                         setTimeout(function() {API.sendChat("/me Napokon se zaustavlja na: " + outcome[0] + outcome[1] + outcome[2])}, 5000);
@@ -4159,7 +4159,7 @@
                          
                     //Display Outcome
                     if (outcome[3] == 0) {
-                        if (updatedTokens === 1) {
+                        if (updatedTokens === 100) {
                             setTimeout(function() {API.sendChat("/me @" + chat.un + ", nemaš sreće! Nisi pobjedio. Preostalo 1 TOKEn.")}, 7000);   
                         }  
                         else if (updatedTokens === 0) {
@@ -4210,7 +4210,7 @@
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslsdraw, {name: chat.un}));
                             
                             } else if (botChoice == "rock" && userChoice == "paper") {
-				    localStorage.setItem(chat.un, "2");
+				    localStorage.setItem(chat.un, "200");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
                             
                             } else if (botChoice == "rock" && userChoice == "scissors" !== -1 || API.getWaitListPosition(id) != djlist.length - 1) {
@@ -4224,7 +4224,7 @@
                                
                             
                             } else if (botChoice == "rock" && userChoice == "spock") {
-				    localStorage.setItem(chat.un, "1");
+				    localStorage.setItem(chat.un, "100");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				    
                             
@@ -4234,12 +4234,12 @@
                                
                             
                             } else if (botChoice == "paper" && userChoice == "scissors") {
-				    localStorage.setItem(chat.un, "2");
+				    localStorage.setItem(chat.un, "200");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				    
                             
                             } else if (botChoice == "paper" && userChoice == "lizard") {
-				     localStorage.setItem(chat.un, "1");
+				     localStorage.setItem(chat.un, "100");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				   
                             
@@ -4249,7 +4249,7 @@
                                 
                             
                             } else if (botChoice == "scissors" && userChoice == "rock") {
-				    localStorage.setItem(chat.un, "1");
+				    localStorage.setItem(chat.un, "100");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				    
                             
@@ -4264,7 +4264,7 @@
         
                             
                             } else if (botChoice == "scissors" && userChoice == "spock") {
-				    localStorage.setItem(chat.un, "2");
+				    localStorage.setItem(chat.un, "200");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				    
                             
@@ -4292,7 +4292,7 @@
                                 
                             
                             } else if (botChoice == "spock" && userChoice == "paper") {
-				     localStorage.setItem(chat.un, "2");
+				     localStorage.setItem(chat.un, "200");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				   
                             
@@ -4302,7 +4302,7 @@
                                 
                             
                             } else if (botChoice == "spock" && userChoice == "lizard") {
-				    localStorage.setItem(chat.un, "2");
+				    localStorage.setItem(chat.un, "200");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				    
                             
