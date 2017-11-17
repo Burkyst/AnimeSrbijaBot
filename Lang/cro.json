@@ -1,6 +1,12 @@
 {
 	"Dares": [
-             "Posalji srce osobi koje je trenutno DJ."
+             "Posalji srce osobi koje je trenutno DJ.",
+	     "Otici ces u neku drugu zajednicu gdje govore bos/srb/hrv jezik i napisat ces -da li je neko za vezu-",
+		"Pustit ces pjesmu koja ima izazovniji spot.",
+		"Moras nacrtat ces u paintu nesto za osobu koja se nalazi u ovoj sobi.",
+		"Moras da ispricas izazovniji vic sad.",
+		"Poslat ces -vtp- prvoj osobi koja je na lisit cekanja.",
+		"Moras izaci iz liste cekanja."
 		],
 	
       "Truths": [
@@ -277,7 +283,7 @@
     "trutherror": "/me [Truth] %%NAME%% Greška... Pokušaj ponovo, verovatno si označio nekoga.",
     "truth": "/me [!truth] %%NAME%% %%FORTUNE%%",
      "trutherror": "/me [!dare] %%NAME%% Greška... Pokušaj ponovo, ne mozes oznacavati nekoga. Izazov se daje samo tebi.",
-    "truth": "/me [!dare] %%NAME%% %%CHALLENGE%%",
+    "dare": "/me [!dare] %%NAME%% %%FORTUNE%%",
 
 
     "alreadyadding": "/me Korisnik je već dodat! Premeštanje na %%POSITION%%.",
