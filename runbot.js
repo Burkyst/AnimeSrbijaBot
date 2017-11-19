@@ -4145,7 +4145,7 @@
                     //Display Slots
                     if (space === -1 || bet == 1) { 
                         //Start Slots
-                        API.sendChat("/me [!slots] @" + chat.un + " ulaže 100 TOKEn na ChemSlots, i povlači ručicu ... i gleda kako se ChemSlots okrece.");
+                        API.sendChat("/me [!slots] @" + chat.un + " ulaže 1 TOKEn na ChemSlots, i povlači ručicu ... i gleda kako se ChemSlots okrece.");
                         setTimeout(function() {API.sendChat("/me  Napokon se zaustavlja na: " + outcome[0] + outcome[1] + outcome[2])}, 5000);
                     } 
                     else if (bet > 100) { 
