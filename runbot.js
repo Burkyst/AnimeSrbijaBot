@@ -624,7 +624,7 @@
                     var pos = Math.floor((Math.random() * API.getWaitList().length) + 1);
                     var user = bBot.userUtilities.lookupUser(winner);
                     var name = user.username;
-		    localStorage.setItem(name, "300");
+		    localStorage.setItem(name, "4");
                     API.sendChat(subChat(bBot.chat.winnerpicked, {name: name, position: pos}));
                     setTimeout(function (winner, pos) {
                         bBot.userUtilities.moveUser(winner, pos, false);
@@ -4210,7 +4210,7 @@
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslsdraw, {name: chat.un}));
                             
                             } else if (botChoice == "rock" && userChoice == "paper") {
-				    localStorage.setItem(chat.un, "200");
+				    localStorage.setItem(chat.un, "2");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
                             
                             } else if (botChoice == "rock" && userChoice == "scissors" !== -1 || API.getWaitListPosition(id) != djlist.length - 1) {
@@ -4224,7 +4224,7 @@
                                
                             
                             } else if (botChoice == "rock" && userChoice == "spock") {
-				    localStorage.setItem(chat.un, "100");
+				    localStorage.setItem(chat.un, "1");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				    
                             
@@ -4234,12 +4234,12 @@
                                
                             
                             } else if (botChoice == "paper" && userChoice == "scissors") {
-				    localStorage.setItem(chat.un, "200");
+				    localStorage.setItem(chat.un, "2");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				    
                             
                             } else if (botChoice == "paper" && userChoice == "lizard") {
-				     localStorage.setItem(chat.un, "100");
+				     localStorage.setItem(chat.un, "1");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				   
                             
@@ -4249,7 +4249,7 @@
                                 
                             
                             } else if (botChoice == "scissors" && userChoice == "rock") {
-				    localStorage.setItem(chat.un, "100");
+				    localStorage.setItem(chat.un, "1");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				    
                             
@@ -4264,7 +4264,7 @@
         
                             
                             } else if (botChoice == "scissors" && userChoice == "spock") {
-				    localStorage.setItem(chat.un, "200");
+				    localStorage.setItem(chat.un, "2");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				    
                             
@@ -4292,7 +4292,7 @@
                                 
                             
                             } else if (botChoice == "spock" && userChoice == "paper") {
-				     localStorage.setItem(chat.un, "200");
+				     localStorage.setItem(chat.un, "2");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				   
                             
@@ -4302,7 +4302,7 @@
                                 
                             
                             } else if (botChoice == "spock" && userChoice == "lizard") {
-				    localStorage.setItem(chat.un, "200");
+				    localStorage.setItem(chat.un, "2");
                                 return API.sendChat(subChat("/me je odabrao " + botChoice + ". " + bBot.chat.rpslswin, {name: chat.un}));
 				    
                             
