@@ -421,7 +421,7 @@
             
             //Check for existing user tokens
             if (localStorage.getItem(user) == null || localStorage.getItem(user) == "undefined") {
-                 localStorage.setItem(user, "200");
+                 localStorage.setItem(user, "2");
                  tokens = localStorage.getItem(user);
             }
             else if (localStorage.getItem(user) !== null  && localStorage.getItem(user) !== "undefined") {
@@ -4112,7 +4112,7 @@
        
                     //Fix bet if blank
                     if (bet == null || isNaN(bet)) {
-                        bet = 100;
+                        bet = 1;
                     }
                     bet = Math.round(bet);     
                                    
@@ -4123,7 +4123,7 @@
                         if (playerTokens[0] === 0){
                             return API.sendChat("/me [!slots] @" + chat.un + " pokusava iskoristiti " + bet + " TOKEn na ChemSlots, ali nema ni jedan! Kako neugodno."); 
                         } 
-                        else if (playerTokens[0] === 100) {
+                        else if (playerTokens[0] === 1) {
                             return API.sendChat("/me [!slots] @" + chat.un + " pokusava iskoristiti " + bet + " TOKEn na ChemSlots, ali ima samo jedan TOKEn! Mislis da imas srece?"); 
                         }
                         else {
@@ -4143,7 +4143,7 @@
                     }
                     
                     //Display Slots
-                    if (space === -100 || bet == 100) { 
+                    if (space === -1 || bet == 1) { 
                         //Start Slots
                         API.sendChat("/me [!slots] @" + chat.un + " ulaže 100 TOKEn na ChemSlots, i povlači ručicu ... i gleda kako se ChemSlots okrece.");
                         setTimeout(function() {API.sendChat("/me  Napokon se zaustavlja na: " + outcome[0] + outcome[1] + outcome[2])}, 5000);
@@ -4159,7 +4159,7 @@
                          
                     //Display Outcome
                     if (outcome[3] == 0) {
-                        if (updatedTokens === 100) {
+                        if (updatedTokens === 1) {
                             setTimeout(function() {API.sendChat("/me @" + chat.un + ", nemaš sreće! Nisi pobjedio. Preostalo 1 TOKEn.")}, 7000);   
                         }  
                         else if (updatedTokens === 0) {
