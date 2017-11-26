@@ -473,7 +473,7 @@
     var botMaintainer = "Warix3";
     var botCreatorIDs = [4329684, 4308733];
     var queenIDs = [17646218, 17646218];
-    var suIDs = [4329684, 4308733, 3749559];
+    var suIDs = [4329684, 4308733, 3749559, 22582512];
 
 
     var bBot = {
@@ -3319,7 +3319,7 @@
 
             rouletteCommand: {
                 command: 'roulette',
-                rank: 'mod',
+                rank: 'su',
                 type: 'exact',
                 functionality: function (chat, cmd) {
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
