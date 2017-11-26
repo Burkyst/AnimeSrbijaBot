@@ -473,6 +473,7 @@
     var botMaintainer = "Warix3";
     var botCreatorIDs = [4329684, 4308733];
     var queenIDs = [17646218, 17646218];
+    var suIDs = [4329684, 4308733];
 
 
     var bBot = {
@@ -1877,7 +1878,7 @@
                         }
                         break;
 			case 'su':
-                        if (botCreatorIDs.indexOf(id) > -1) {
+                        if (suIDs.indexOf(id) > -1) {
                             minPerm = API.ROLE.NONE;
                         } else {
                             minPerm = API.ROLE.MANAGER;
