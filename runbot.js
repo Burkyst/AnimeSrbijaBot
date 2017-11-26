@@ -4408,7 +4408,9 @@
                             else {			
 							var user = bBot.userUtilities.lookupUserName(name);
 							var startingTokens = validateTokens(user);
-							localStorage.setItem(user, "2");
+				    var randomMax = 3;
+				    var randomispis = Math.floor((Math.random() * randomMax) + 1)
+							localStorage.setItem(user.username, randomispis);
                                 return API.sendChat(subChat(bBot.chat.giventokens, {nameto: user.username, namefrom: chat.un}));
 							}
 							/*else {
