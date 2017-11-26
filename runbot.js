@@ -473,7 +473,7 @@
     var botMaintainer = "Warix3";
     var botCreatorIDs = [4329684, 4308733];
     var queenIDs = [17646218, 17646218];
-    var suIDs = [4329684, 4308733];
+    var suIDs = [4329684, 4308733, 3749559];
 
 
     var bBot = {
