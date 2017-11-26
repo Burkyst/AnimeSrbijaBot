@@ -476,7 +476,7 @@
 
 
     var bBot = {
-        version: "v4.1.5",
+        version: "v4.1.6",
         status: false,
         name: "KawaiBOT",
         loggedInID: "23625731",
