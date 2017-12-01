@@ -4694,7 +4694,7 @@
                 }
             },
 
-            rpsCommand: {
+            /* rpsCommand: {
                 command: 'rps',
                 rank: 'user',
                 type: 'startsWith',
@@ -4864,7 +4864,7 @@
                         }
                     }
                 }
-            },
+            }, */
 
             // !tokens
             tokensCommand: {
