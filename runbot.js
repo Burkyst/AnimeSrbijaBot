@@ -2014,14 +2014,14 @@
                         if (bBot.settings.bouncerPlus) {
                             minPerm = API.ROLE.BOUNCER;
                         } else {
-                            minPerm = API.ROLE.HOST;
+                            minPerm = API.ROLE.MANAGER;
                         }
                         break;
                     case 'su':
                         if (suIDs.indexOf(id) > -1) {
                             minPerm = API.ROLE.NONE;
                         } else {
-                            minPerm = API.ROLE.MANAGER;
+                            minPerm = API.ROLE.HOST;
                         }
                         break;
                     case 'bouncer':
