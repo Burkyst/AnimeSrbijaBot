@@ -4878,7 +4878,7 @@
                         var user = chat.un;
                         var tokens = validateTokens(user);
 
-                        API.sendChat("/me [!tokens] @" + user + ", imas " + tokens + " TOKEna. Mozda zelis jos? Sretno an ruletu ili zatrazi od admina.");
+                        API.sendChat("/me [!tokens] @" + user + ", imas " + tokens + " TOKEna. Mozda zelis jos? Sretno na ruletu ili zatrazi od admina.");
                     }
                 }
             },
