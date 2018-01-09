@@ -1333,6 +1333,7 @@
             }
         },
         eventDjadvance: function(obj) {
+		if (!obj.dj) return;
 
             //AnimeSrbija announce command:
             if (bBot.settings.announceActive && ((Date.now() - bBot.settings.announceStartTime) >= bBot.settings.announceTime)) {
@@ -1344,7 +1345,7 @@
                 var reward = obj.lastPlay.score.positive + (obj.lastPlay.score.grabs * 3) - obj.lastPlay.score.negative;
                 var lastdjplayed = bBot.userUtilities.lookupUser(obj.lastPlay.dj.id);
                 lastdjplayed.animePoints += reward;
-                API.sendChat("/me [ap] @" + lastdjplayed.username + " Osvojio/la si " + reward + " AnimePointsa! upisi \"!ap help\" da vidis šta možeš s njima!");
+                API.sendChat("/me [system] @" + lastdjplayed.username + " Osvojio/la si " + reward + " AnimePointsa! upisi \"!ap help\" da vidis šta možeš s njima!");
                 $.ajaxSetup({
                     async: true
                 });
@@ -1501,6 +1502,8 @@
                 var remaining = obj.media.duration * 1000;
                 var startcid = API.getMedia().cid;
                 bBot.room.autoskipTimer = setTimeout(function() {
+		 if (!API.getMedia()) return;
+			
                     var endcid = API.getMedia().cid;
                     if (startcid === endcid) {
                         //API.sendChat('Song stuck, skipping...');
@@ -1706,6 +1709,11 @@
                     }));
                     return true;
                 }
+		    if(msg.indexOf("[system]") !== -1){                
+                  setTimeout(function (id) {
+                  API.moderateDeleteChat(id);
+                    }, 60 * 1000, chat.cid);
+                      }
                 if (msg.indexOf('autojoin was not enabled') > 0 || msg.indexOf('AFK message was not enabled') > 0 || msg.indexOf('!afkdisable') > 0 || msg.indexOf('!joindisable') > 0 || msg.indexOf('autojoin disabled') > 0 || msg.indexOf('AFK message disabled') > 0) {
                     API.moderateDeleteChat(chat.cid);
                     return true;
@@ -4981,7 +4989,7 @@
                     if (this.type === 'exact' && chat.message.length !== cmd.length) return void(0);
                     if (!bBot.commands.executable(this.rank, chat)) return void(0);
                     else {
-                        API.sendChat(bBot.version + "/me : Sta je novo? Zaradite tokene sa Komandom !rps [izbor], skraceno or rock paper scissors, pazite ako dobijete imate nagradu ako izgubite gubite vise od poena. Izbori su rock, paper, scissors, lizard, spock.");
+                        API.sendChat(bBot.version + "/me : Sta je novo? Bot ce sada brisati poruke nakon nekoliko sekundi, vezane za dobivene poene");
                     }
                 }
             },
