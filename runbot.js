@@ -158,7 +158,7 @@
 
     var loadChat = function(cb) {
         if (!cb) cb = function() {};
-        $.get("https://rawgit.com/Warix3/AnimeSrbijaBot/master/Lang/langIndex.json", function(json) {
+        $.get("https://cdn.jsdelivr.net/gh/Warix3/AnimeSrbijaBot/Lang/langIndex.json", function(json) {
             var link = bBot.chatLink;
             if (json !== null && typeof json !== "undefined") {
                 langIndex = json;
@@ -462,9 +462,9 @@
         status: false,
         name: "KawaiBOT",
         loggedInID: "23625731",
-        scriptLink: "https://rawgit.com/Warix3/AnimeSrbijaBot/master/runbot.js",
+        scriptLink: "https://cdn.jsdelivr.net/gh/Warix3/AnimeSrbijaBot/runbot.js",
         cmdLink: "https://github.com/Warix3/AnimeSrbijaBot/blob/master/commands.md",
-        chatLink: "https://rawgit.com/Warix3/AnimeSrbijaBot/master/Lang/cro.json",
+        chatLink: "https://cdn.jsdelivr.net/gh/Warix3/AnimeSrbijaBot/Lang/cro.json",
         chat: null,
         emojimap: null,
         loadChat: loadChat,
@@ -474,7 +474,7 @@
         settings: {
             botName: "KawaiBOT",
             language: "croatian",
-            chatLink: "https://rawgit.com/Warix3/AnimeSrbijaBot/master/Lang/cro.json",
+            chatLink: "https://cdn.jsdelivr.net/gh/Warix3/AnimeSrbijaBot/Lang/cro.json",
             roomLock: false, // Requires an extension to re-load the script
             startupCap: 1, // 1-200
             startupVolume: 0, // 0-100
